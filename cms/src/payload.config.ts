@@ -27,6 +27,16 @@ export default buildConfig({
     'https://amn-sk-cms.mrbraddavidson.workers.dev',
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: ' — Mentor Network (AMN-SK)',
+      description: 'Staff portal for the Mentor Network (AMN-SK)',
+    },
+    components: {
+      graphics: {
+        Logo: '/components/Logo#Logo',
+        Icon: '/components/Icon#Icon',
+      },
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
