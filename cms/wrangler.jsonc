@@ -2,17 +2,25 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "amn-sk-cms",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2024-09-23",
+  "compatibility_date": "2026-11-04",
   "compatibility_flags": [
-    "nodejs_compat"
+    "nodejs_compat",
+    "expose_global_message_channel"
   ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "639265817d2f4627ab49f8ffaae087f7"
+    }
+  ],
   "vars": {
     "DATABASE_URI": "postgresql://neondb_owner:npg_R9A3EzKnLQTm@ep-noisy-forest-arc1z076-pooler.c-4.us-west-2.aws.neon.tech/neondb?sslmode=require",
     "PAYLOAD_SECRET": "amn_sk_mentor_network_secret_982f1b4097e84a56c071",
-    "PORT": "3001"
+    "NEXT_PUBLIC_SERVER_URL": "https://amn-sk-cms.mrbraddavidson.workers.dev",
+    "CORS_ORIGINS": "https://amn-sk.pages.dev,http://localhost:4321"
   }
 }

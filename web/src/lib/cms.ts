@@ -1,4 +1,4 @@
-const CMS_URL = import.meta.env.PUBLIC_CMS_URL || 'http://localhost:3001'
+const CMS_URL = import.meta.env.PUBLIC_CMS_URL || 'https://amn-sk-cms.mrbraddavidson.workers.dev'
 
 export interface ResourceItem {
   id: string | number
