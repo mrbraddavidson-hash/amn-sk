@@ -4,6 +4,7 @@ node_modules/
 
 # Next.js & Payload build output
 .next/
+.open-next/
 out/
 build/
 dist/

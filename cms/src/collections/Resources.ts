@@ -1,5 +1,36 @@
-import type { CollectionConfig } from 'payload'
+import type { Access, CollectionConfig, Where } from 'payload'
 import { isAdmin } from '../access'
+
+const canReadResources: Access = ({ req: { user } }) => {
+  if (user && user.role === 'admin') return true
+
+  if (user && user.role === 'mentor') {
+    const query: Where = {
+      or: [
+        { accessLevel: { equals: 'public' } },
+        { accessLevel: { equals: 'mentor' } },
+      ],
+    }
+    return query
+  }
+
+  if (user && user.role === 'mentee') {
+    const query: Where = {
+      or: [
+        { accessLevel: { equals: 'public' } },
+        { accessLevel: { equals: 'mentee' } },
+      ],
+    }
+    return query
+  }
+
+  const query: Where = {
+    accessLevel: {
+      equals: 'public',
+    },
+  }
+  return query
+}
 
 export const Resources: CollectionConfig = {
   slug: 'resources',
@@ -11,37 +42,7 @@ export const Resources: CollectionConfig = {
     create: isAdmin,
     update: isAdmin,
     delete: isAdmin,
-    read: ({ req: { user } }) => {
-      // If admin, see all
-      if (user && user.role === 'admin') return true
-
-      // If mentor, see public and mentor resources
-      if (user && user.role === 'mentor') {
-        return {
-          or: [
-            { accessLevel: { equals: 'public' } },
-            { accessLevel: { equals: 'mentor' } },
-          ],
-        }
-      }
-
-      // If mentee, see public and mentee resources
-      if (user && user.role === 'mentee') {
-        return {
-          or: [
-            { accessLevel: { equals: 'public' } },
-            { accessLevel: { equals: 'mentee' } },
-          ],
-        }
-      }
-
-      // Anonymous / Public visitors can only read public resources
-      return {
-        accessLevel: {
-          equals: 'public',
-        },
-      }
-    },
+    read: canReadResources,
   },
   fields: [
     {
