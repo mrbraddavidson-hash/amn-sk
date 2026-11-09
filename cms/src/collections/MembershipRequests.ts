@@ -79,7 +79,7 @@ export const MembershipRequests: CollectionConfig = {
           await payload.sendEmail({
             to: doc.email,
             subject: 'Welcome to the Mentor Network — set your password',
-            html: `<p>Hello ${doc.fullName},</p><p>Your application has been approved. Set your password here:</p><p><a href="${cmsUrl}/admin/reset/${token}">Set my password</a></p><p>Then sign in at <a href="${siteUrl}/login">${siteUrl}/login</a>.</p>`,
+            html: `<p>Hello ${doc.fullName},</p><p>Your application has been approved. Set your password here:</p><p><a href="${siteUrl}/reset-password?token=${token}">Set my password</a></p><p>Then sign in at <a href="${siteUrl}/login">${siteUrl}/login</a>.</p>`,
           })
         } catch (err) {
           payload.logger.error({ err }, 'Failed to provision approved member')

@@ -7,7 +7,16 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
     defaultColumns: ['fullName', 'email', 'role', 'status'],
   },
-  auth: true,
+  auth: {
+    forgotPassword: {
+      generateEmailSubject: () => 'Reset your Mentor Network password',
+      generateEmailHTML: (args) => {
+        const siteUrl = process.env.FRONTEND_URL || 'https://amn-sk.pages.dev'
+        const link = `${siteUrl}/reset-password?token=${args?.token}`
+        return `<p>Hello,</p><p>Use the link below to choose a new password for your Mentor Network account:</p><p><a href="${link}">Reset my password</a></p><p>If you didn't request this, you can ignore this email.</p>`
+      },
+    },
+  },
   access: {
     read: isAdminOrSelf,
     update: isAdminOrSelf,
