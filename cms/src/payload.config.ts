@@ -18,22 +18,30 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://amn-sk-cms.mrbraddavidson.workers.dev',
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
+  auth: {
+    passwordHashIterations: 100000,
+  },
   cors: [
     'http://localhost:4321',
     'http://localhost:3000',
     'http://localhost:3001',
+    'https://amn-sk.pages.dev',
+    'https://amn-sk-cms.mrbraddavidson.workers.dev',
     process.env.FRONTEND_URL || '',
   ].filter(Boolean),
   csrf: [
     'http://localhost:4321',
     'http://localhost:3000',
     'http://localhost:3001',
+    'https://amn-sk.pages.dev',
+    'https://amn-sk-cms.mrbraddavidson.workers.dev',
     process.env.FRONTEND_URL || '',
   ].filter(Boolean),
   collections: [
