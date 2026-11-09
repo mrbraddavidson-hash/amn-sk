@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const Events: CollectionConfig = {
   slug: 'events',
   admin: {
+    group: 'Public Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'eventDate', 'locationType'],
   },

@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const Quotes: CollectionConfig = {
   slug: 'quotes',
   admin: {
+    group: 'Public Content',
     useAsTitle: 'author',
     defaultColumns: ['author', 'roleOrAffiliation', 'isActive'],
   },

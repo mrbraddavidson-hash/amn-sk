@@ -35,6 +35,7 @@ const canReadResources: Access = ({ req: { user } }) => {
 export const Resources: CollectionConfig = {
   slug: 'resources',
   admin: {
+    group: 'Mentorship Program',
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'accessLevel', 'publishedDate'],
   },

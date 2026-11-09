@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
+    group: 'Public Content',
     useAsTitle: 'name',
     defaultColumns: ['name', 'roleTitle', 'displayOrder'],
   },

@@ -4,6 +4,7 @@ import { isAdmin, isAdminOrSelf } from '../access'
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
+    group: 'Mentorship Program',
     useAsTitle: 'email',
     defaultColumns: ['fullName', 'email', 'role', 'status'],
   },

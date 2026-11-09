@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const FAQs: CollectionConfig = {
   slug: 'faqs',
   admin: {
+    group: 'Public Content',
     useAsTitle: 'question',
     defaultColumns: ['question', 'category', 'displayOrder'],
   },

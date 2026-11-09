@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const MembershipRequests: CollectionConfig = {
   slug: 'membership-requests',
   admin: {
+    group: 'Mentorship Program',
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'requestedRole', 'status', 'createdAt'],
   },

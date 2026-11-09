@@ -4,6 +4,7 @@ import { isAdmin } from '../access'
 export const News: CollectionConfig = {
   slug: 'news',
   admin: {
+    group: 'Public Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'publishedDate', 'isFeatured'],
   },
