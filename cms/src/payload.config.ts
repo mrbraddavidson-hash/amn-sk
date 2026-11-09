@@ -18,7 +18,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://amn-sk-cms.mrbraddavidson.workers.dev',
+  serverURL:
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined) ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+    'https://amn-sk-cms.mrbraddavidson.workers.dev',
   admin: {
     user: Users.slug,
     importMap: {
@@ -34,6 +38,8 @@ export default buildConfig({
     'http://localhost:3001',
     'https://amn-sk.pages.dev',
     'https://amn-sk-cms.mrbraddavidson.workers.dev',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '',
     process.env.FRONTEND_URL || '',
   ].filter(Boolean),
   csrf: [
@@ -42,6 +48,8 @@ export default buildConfig({
     'http://localhost:3001',
     'https://amn-sk.pages.dev',
     'https://amn-sk-cms.mrbraddavidson.workers.dev',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '',
     process.env.FRONTEND_URL || '',
   ].filter(Boolean),
   collections: [
