@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Member Area — Mentor Network (AMN-SK)">
+  <section class="bg-gradient-to-b from-sky-900 to-slate-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold font-mono mb-2">
+          🔒 SECURE MEMBER AREA
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white" id="welcome-title">
+          Member Resource Hub
+        </h1>
+        <p class="text-sm text-sky-200 mt-1" id="user-info-bar">
+          Verifying your authenticated session...
+        </p>
+      </div>
+
+      <div>
+        <button 
+          id="logout-btn" 
+          class="hidden px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 transition-colors"
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-50 min-h-[60vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Unauthenticated State (Shown if not logged in) -->
+      <div id="auth-required" class="hidden max-w-md mx-auto bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center space-y-4">
+        <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto text-xl font-bold">
+          !
+        </div>
+        <h2 class="text-xl font-bold text-slate-900">Authentication Required</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          The resources in this area are restricted to verified mentors and mentees. Please sign in to view your role-specific documents.
+        </p>
+        <div class="pt-2">
+          <a href="/login" class="inline-block w-full py-2.5 px-4 rounded-xl bg-sky-700 hover:bg-sky-800 text-white text-sm font-bold transition-colors">
+            Go to Member Sign In
+          </a>
+        </div>
+      </div>
+
+      <!-- Authenticated Member Content Hub -->
+      <div id="member-content" class="hidden space-y-10">
+        
+        <!-- Mentor Section -->
+        <div id="mentor-section" class="space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Restricted Materials</span>
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentor Toolkits & Frameworks</h2>
+            </div>
+            <span class="text-xs font-mono bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">
+              MENTOR ROLE VERIFIED
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">📋</span>
+              <h3 class="font-bold text-slate-900 text-base">Mentorship Session Framework</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Structured templates for monthly 1-on-1 progress reviews, goal setting, and clinical check-ins.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">PDF • 1.2 MB</span>
+                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">🤝</span>
+              <h3 class="font-bold text-slate-900 text-base">Coaching & Feedback Playbook</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Techniques for navigating high-stakes transition issues, constructive clinical critique, and boundary setting.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">PDF • 2.4 MB</span>
+                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">🛡️</span>
+              <h3 class="font-bold text-slate-900 text-base">Wellness & Retention Checklists</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Early indicators of clinical exhaustion, rural isolation triggers, and rapid escalation resources in Saskatchewan.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">PDF • 850 KB</span>
+                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mentee Section -->
+        <div id="mentee-section" class="space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-teal-700">Restricted Materials</span>
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentee Transition Resources</h2>
+            </div>
+            <span class="text-xs font-mono bg-teal-100 text-teal-800 px-2.5 py-1 rounded-md font-semibold">
+              MENTEE ROLE VERIFIED
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">🗺️</span>
+              <h3 class="font-bold text-slate-900 text-base">First-Year Practice Roadmap</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Key administrative, billing, and clinical milestones for new practitioners in Saskatchewan health facilities.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">PDF • 3.1 MB</span>
+                <a href="#download" class="font-bold text-teal-700 hover:underline">Download ↓</a>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">📝</span>
+              <h3 class="font-bold text-slate-900 text-base">Mentorship Goal Worksheet</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Interactive preparation sheet to establish your annual clinical goals before pairing meetings.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">DOCX • 520 KB</span>
+                <a href="#download" class="font-bold text-teal-700 hover:underline">Download ↓</a>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
+              <span class="text-2xl mb-2 block">📞</span>
+              <h3 class="font-bold text-slate-900 text-base">Direct Peer Contact Directory</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Access contact preferences, availability windows, and specialty tags for your matched mentors.</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400 font-mono">Confidential Directory</span>
+                <a href="#download" class="font-bold text-teal-700 hover:underline">View Contacts →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const token = localStorage.getItem('amn_member_token');
+    const userStr = localStorage.getItem('amn_member_user');
+    const authRequired = document.getElementById('auth-required');
+    const memberContent = document.getElementById('member-content');
+    const userInfoBar = document.getElementById('user-info-bar');
+    const logoutBtn = document.getElementById('logout-btn');
+    const welcomeTitle = document.getElementById('welcome-title');
+    const mentorSection = document.getElementById('mentor-section');
+    const menteeSection = document.getElementById('mentee-section');
+
+    if (!token || !userStr) {
+      if (authRequired) authRequired.classList.remove('hidden');
+      if (userInfoBar) userInfoBar.textContent = 'Please log in to verify your member access.';
+    } else {
+      try {
+        const user = JSON.parse(userStr);
+        if (memberContent) memberContent.classList.remove('hidden');
+        if (logoutBtn) logoutBtn.classList.remove('hidden');
+        if (welcomeTitle) welcomeTitle.textContent = `Welcome back, ${user.fullName || user.email}`;
+        if (userInfoBar) userInfoBar.textContent = `Signed in as ${user.email} (${(user.role || 'Member').toUpperCase()})`;
+
+        // Role-based visibility
+        if (user.role === 'mentor') {
+          if (menteeSection) menteeSection.classList.add('hidden');
+        } else if (user.role === 'mentee') {
+          if (mentorSection) mentorSection.classList.add('hidden');
+        }
+        // Admin sees both!
+      } catch (e) {
+        if (authRequired) authRequired.classList.remove('hidden');
+      }
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('amn_member_token');
+        localStorage.removeItem('amn_member_user');
+        window.location.href = '/login';
+      });
+    }
+  </script>
+</Layout>

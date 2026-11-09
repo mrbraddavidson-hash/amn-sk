@@ -1,0 +1,239 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Mentor Network (AMN-SK) — Supporting Saskatchewan Healthcare Leaders",
+  description = "A collaborative network providing peer mentorship, clinical resources, and professional support for mentors, mentees, health providers, and patients across Saskatchewan."
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-sky-200">
+    <!-- Top Utility Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+        <p class="font-medium tracking-wide flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+          Mentor Network (AMN-SK) • Saskatchewan Clinical Mentorship Portal
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="/login" class="hover:text-white transition-colors underline-offset-4 hover:underline">Member Login</a>
+          <span class="text-slate-600">|</span>
+          <a href="http://localhost:3001/admin" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 font-medium">Admin Portal ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo & Brand -->
+          <a href="/" class="flex items-center gap-3 group focus:outline-hidden">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-700 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+              MN
+            </div>
+            <div>
+              <span class="font-bold text-lg sm:text-xl text-slate-900 tracking-tight block leading-tight">
+                Mentor Network <span class="text-sky-700 font-semibold text-base sm:text-lg">(AMN-SK)</span>
+              </span>
+              <span class="text-xs text-slate-500 font-medium block">
+                Saskatchewan Mentorship & Clinical Resources
+              </span>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+            <a 
+              href="/" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath === '/' ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              Home
+            </a>
+            <a 
+              href="/about" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath.startsWith('/about') && currentPath !== '/about/people' ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              About
+            </a>
+            <a 
+              href="/about/people" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath === '/about/people' ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              People
+            </a>
+            <a 
+              href="/news" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath.startsWith('/news') ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              News
+            </a>
+            <a 
+              href="/events" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath.startsWith('/events') ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              Events
+            </a>
+            <a 
+              href="/resources" 
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath.startsWith('/resources') ? 'text-sky-700 bg-sky-50 font-semibold' : 'text-slate-700 hover:text-sky-700 hover:bg-slate-50'}`}
+            >
+              Resources
+            </a>
+          </nav>
+
+          <!-- Desktop CTA Action Buttons -->
+          <div class="hidden md:flex items-center gap-3">
+            <a 
+              href="/login" 
+              class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-sky-700 border border-slate-300 rounded-lg hover:border-sky-300 transition-all shadow-2xs"
+            >
+              Member Sign In
+            </a>
+            <a 
+              href="/apply" 
+              class="px-4 py-2 text-sm font-medium text-white bg-sky-700 hover:bg-sky-800 rounded-lg shadow-sm hover:shadow-md transition-all"
+            >
+              Join the Network
+            </a>
+          </div>
+
+          <!-- Mobile Hamburger Toggle -->
+          <div class="flex md:hidden items-center">
+            <button 
+              id="mobile-menu-btn" 
+              type="button" 
+              aria-label="Toggle navigation menu"
+              class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-hidden"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 space-y-1 shadow-lg">
+        <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">Home</a>
+        <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">About the Network</a>
+        <a href="/about/people" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">People & Team</a>
+        <a href="/news" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">News</a>
+        <a href="/events" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">Events</a>
+        <a href="/resources" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-sky-50 hover:text-sky-700">Resources</a>
+        <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
+          <a href="/login" class="w-full text-center py-2.5 px-4 text-sm font-semibold rounded-lg border border-slate-300 text-slate-700">Member Sign In</a>
+          <a href="/apply" class="w-full text-center py-2.5 px-4 text-sm font-semibold rounded-lg bg-sky-700 text-white">Join the Network</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <!-- Col 1: Brand & Funder Notice -->
+          <div class="md:col-span-1 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-lg">
+                MN
+              </div>
+              <span class="font-bold text-white text-lg tracking-tight">AMN-SK</span>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Fostering connection, leadership, and clinical excellence for healthcare providers and trainees across Saskatchewan.
+            </p>
+            <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700 text-xs text-slate-300">
+              <span class="font-semibold text-white block mb-1">Financial Support & Funding</span>
+              Supported through provincial health leadership initiatives and clinical education grants.
+            </div>
+          </div>
+
+          <!-- Col 2: Navigation -->
+          <div>
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">The Network</h3>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/about/people" class="hover:text-white transition-colors">Team & Leadership</a></li>
+              <li><a href="/news" class="hover:text-white transition-colors">News & Updates</a></li>
+              <li><a href="/events" class="hover:text-white transition-colors">Events & Workshops</a></li>
+              <li><a href="/apply" class="hover:text-white transition-colors">Membership Application</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Resources -->
+          <div>
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Resource Center</h3>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/resources#providers" class="hover:text-white transition-colors">Health Provider Resources</a></li>
+              <li><a href="/resources#patients" class="hover:text-white transition-colors">Patient Resources</a></li>
+              <li><a href="/login" class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Mentor Resources</span>
+                <span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded text-sky-300 font-mono">Restricted</span>
+              </a></li>
+              <li><a href="/login" class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Mentee Resources</span>
+                <span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded text-sky-300 font-mono">Restricted</span>
+              </a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Member & Admin Access -->
+          <div class="space-y-4">
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Portal Access</h3>
+            <p class="text-xs text-slate-400">
+              Approved mentors and mentees can sign in to access confidential frameworks, meeting logs, and documents.
+            </p>
+            <div class="flex flex-col gap-2">
+              <a href="/login" class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-sm font-medium transition-colors">
+                Member Area Login
+              </a>
+              <a href="http://localhost:3001/admin" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition-colors">
+                Staff Content Management ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} Mentor Network (AMN-SK). All rights reserved.</p>
+          <p>Accessibility-conscious implementation • WCAG 2.1 AA Aligned</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

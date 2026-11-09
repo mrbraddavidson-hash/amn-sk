@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEvents } from '../../lib/cms';
+
+const events = await getEvents();
+---
+
+<Layout title="Events & Workshops — Mentor Network (AMN-SK)">
+  <section class="bg-gradient-to-b from-sky-900 to-slate-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold uppercase tracking-wider text-sky-300">Continuing Professional Development</span>
+      <h1 class="text-4xl font-extrabold tracking-tight mt-2 text-white">Events & Workshops</h1>
+      <p class="text-lg text-sky-100/90 mt-4 max-w-2xl leading-relaxed">
+        Join our virtual peer circles, accredited mentoring workshops, and collaborative symposia.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      {events.map((event) => (
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 font-mono uppercase">
+                {event.locationType}
+              </span>
+              <span class="text-xs font-medium text-slate-500">
+                {new Date(event.eventDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
+              </span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">{event.title}</h2>
+            <p class="text-sm text-slate-600 leading-relaxed">{event.description}</p>
+            {event.locationDetails && (
+              <p class="text-xs text-slate-500 font-medium">📍 {event.locationDetails}</p>
+            )}
+          </div>
+          <div>
+            <a 
+              href={event.registrationUrl || '/apply'} 
+              class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm bg-sky-700 hover:bg-sky-800 text-white shadow-xs transition-all whitespace-nowrap"
+            >
+              Register / Details →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

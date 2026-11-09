@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Member Sign In — Mentor Network (AMN-SK)">
+  <section class="min-h-[80vh] flex items-center justify-center py-16 bg-slate-50">
+    <div class="w-full max-w-md px-4">
+      <div class="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-md">
+        <div class="text-center mb-8">
+          <div class="w-12 h-12 bg-sky-700 text-white rounded-xl flex items-center justify-center font-bold text-xl mx-auto mb-3 shadow-sm">
+            MN
+          </div>
+          <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Member Portal Sign In</h1>
+          <p class="text-xs text-slate-500 mt-1">Access restricted mentor and mentee clinical resources</p>
+        </div>
+
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              placeholder="name@organization.ca"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm"
+            />
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label for="password" class="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Password
+              </label>
+              <a href="#" class="text-xs text-sky-700 hover:underline">Forgot?</a>
+            </div>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              required 
+              placeholder="••••••••"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm"
+            />
+          </div>
+
+          <div id="login-error" class="hidden p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
+          </div>
+
+          <button 
+            type="submit" 
+            id="login-btn"
+            class="w-full py-3 px-4 rounded-xl font-bold text-white bg-sky-700 hover:bg-sky-800 shadow-sm transition-all text-sm cursor-pointer mt-2"
+          >
+            Sign In to Member Area
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-slate-100 text-center space-y-3">
+          <p class="text-xs text-slate-500">
+            Not yet registered as an active mentor or mentee?
+          </p>
+          <a href="/apply" class="inline-block text-xs font-bold text-sky-700 hover:text-sky-800">
+            Submit a Membership Request →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('login-form') as HTMLFormElement;
+    const errorBox = document.getElementById('login-error');
+    const btn = document.getElementById('login-btn');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (errorBox) errorBox.classList.add('hidden');
+        if (btn) {
+          btn.setAttribute('disabled', 'true');
+          btn.textContent = 'Verifying credentials...';
+        }
+
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        try {
+          const res = await fetch('http://localhost:3001/api/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+          });
+
+          if (!res.ok) {
+            throw new Error('Invalid email or password. Please verify your credentials.');
+          }
+
+          const data = await res.json();
+          // Store token in localStorage for portal authorization
+          if (data?.token) {
+            localStorage.setItem('amn_member_token', data.token);
+            localStorage.setItem('amn_member_user', JSON.stringify(data.user));
+          }
+
+          window.location.href = '/portal';
+        } catch (err: any) {
+          if (errorBox) {
+            errorBox.textContent = err.message || 'Login failed. Please check your network connection.';
+            errorBox.classList.remove('hidden');
+          }
+          if (btn) {
+            btn.removeAttribute('disabled');
+            btn.textContent = 'Sign In to Member Area';
+          }
+        }
+      });
+    }
+  </script>
+</Layout>

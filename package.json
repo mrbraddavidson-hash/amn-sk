@@ -1,0 +1,16 @@
+{
+  "name": "amn-sk-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "cms",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:cms\" \"npm run dev:web\"",
+    "dev:cms": "npm run dev --workspace=cms",
+    "dev:web": "npm run dev --workspace=web",
+    "build:cms": "npm run build --workspace=cms",
+    "build:web": "npm run build --workspace=web"
+  }
+}

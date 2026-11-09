@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #0284c7;
+  --primary-dark: #0369a1;
+  --primary-light: #e0f2fe;
+  --secondary: #0f766e;
+  --accent: #f59e0b;
+  --surface: #ffffff;
+  --background: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #0f172a;
+  background-color: #f8fafc;
+  line-height: 1.6;
+}
+
+/* Accessible focus ring for WCAG 2.1 AA */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
