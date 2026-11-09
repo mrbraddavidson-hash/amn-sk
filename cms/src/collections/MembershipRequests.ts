@@ -15,6 +15,79 @@ export const MembershipRequests: CollectionConfig = {
     update: isAdmin,
     delete: isAdmin,
   },
+  hooks: {
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        const { payload } = req
+        const siteUrl = process.env.FRONTEND_URL || 'https://amn-sk.pages.dev'
+        const cmsUrl =
+          process.env.NEXT_PUBLIC_SERVER_URL ||
+          (process.env.VERCEL_PROJECT_PRODUCTION_URL
+            ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+            : 'http://localhost:3001')
+
+        // Confirmation email to the applicant on new submission
+        if (operation === 'create') {
+          try {
+            await payload.sendEmail({
+              to: doc.email,
+              subject: 'We received your Mentor Network application',
+              html: `<p>Hello ${doc.fullName},</p><p>Thank you for applying to the Mentor Network (AMN-SK). Our team will review your application and be in touch.</p>`,
+            })
+          } catch (err) {
+            payload.logger.error({ err }, 'Failed to send application confirmation email')
+          }
+          return doc
+        }
+
+        // Approval: create the member login and email a password-setup link
+        const justApproved = doc.status === 'approved' && previousDoc?.status !== 'approved'
+        if (!justApproved) return doc
+
+        try {
+          const existing = await payload.find({
+            collection: 'users',
+            where: { email: { equals: doc.email } },
+            limit: 1,
+            req,
+          })
+          if (existing.totalDocs > 0) {
+            payload.logger.info(`User already exists for ${doc.email}; skipping creation`)
+            return doc
+          }
+
+          await payload.create({
+            collection: 'users',
+            data: {
+              email: doc.email,
+              password: crypto.randomUUID() + crypto.randomUUID(),
+              fullName: doc.fullName,
+              role: doc.requestedRole,
+              organization: doc.organization || undefined,
+              status: 'active',
+            },
+            req,
+          })
+
+          const token = await payload.forgotPassword({
+            collection: 'users',
+            data: { email: doc.email },
+            disableEmail: true,
+            req,
+          })
+
+          await payload.sendEmail({
+            to: doc.email,
+            subject: 'Welcome to the Mentor Network — set your password',
+            html: `<p>Hello ${doc.fullName},</p><p>Your application has been approved. Set your password here:</p><p><a href="${cmsUrl}/admin/reset/${token}">Set my password</a></p><p>Then sign in at <a href="${siteUrl}/login">${siteUrl}/login</a>.</p>`,
+          })
+        } catch (err) {
+          payload.logger.error({ err }, 'Failed to provision approved member')
+        }
+        return doc
+      },
+    ],
+  },
   fields: [
     {
       name: 'fullName',

@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -65,6 +66,15 @@ export default buildConfig({
     Media,
   ],
   editor: lexicalEditor(),
+  ...(process.env.RESEND_API_KEY
+    ? {
+        email: resendAdapter({
+          defaultFromAddress: process.env.EMAIL_FROM || 'onboarding@resend.dev',
+          defaultFromName: 'Mentor Network (AMN-SK)',
+          apiKey: process.env.RESEND_API_KEY,
+        }),
+      }
+    : {}),
   secret: process.env.PAYLOAD_SECRET || 'amn_sk_fallback_secret_key_12345',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
