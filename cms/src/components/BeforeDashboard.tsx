@@ -216,6 +216,73 @@ export const BeforeDashboard: React.FC = () => {
           </div>
         </a>
       </div>
+
+      <div
+        style={{
+          marginTop: '1.25rem',
+          paddingTop: '1rem',
+          borderTop: '1px solid rgba(2, 132, 199, 0.15)',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span style={{ fontSize: '1.1rem' }}>📊</span>
+          <div>
+            <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              1-Click Data Exports:
+            </span>
+            <span style={{ fontSize: '0.78rem', color: 'var(--theme-elevation-600)', marginLeft: '0.4rem' }}>
+              Download live rosters and applicant submissions directly into Excel / CSV.
+            </span>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <a
+            href="/api/membership-requests/export"
+            download="AMN-SK-Membership-Applications.csv"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              padding: '0.45rem 0.85rem',
+              borderRadius: '6px',
+              background: 'var(--theme-elevation-0)',
+              border: '1px solid rgba(2, 132, 199, 0.35)',
+              color: 'var(--theme-text)',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+            }}
+          >
+            <span>⬇ Applications (.CSV)</span>
+          </a>
+          <a
+            href="/api/users/export"
+            download="AMN-SK-Member-Roster.csv"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              padding: '0.45rem 0.85rem',
+              borderRadius: '6px',
+              background: 'var(--theme-elevation-0)',
+              border: '1px solid rgba(2, 132, 199, 0.35)',
+              color: 'var(--theme-text)',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+            }}
+          >
+            <span>⬇ Member Roster (.CSV)</span>
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
