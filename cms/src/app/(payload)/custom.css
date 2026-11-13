@@ -231,4 +231,31 @@
   .modular-dashboard {
     display: none !important;
   }
+
+  /* Mobile Nav Sticky Footer & Scroll Container */
+  .nav {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 100vh !important;
+  }
+
+  .nav__scroll {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 5rem !important;
+  }
+
+  .nav__controls {
+    position: sticky !important;
+    bottom: 0 !important;
+    background: var(--theme-elevation-50) !important;
+    border-top: 1px solid var(--theme-elevation-150) !important;
+    padding: 0.85rem 1rem !important;
+    z-index: 99 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05) !important;
+  }
 }

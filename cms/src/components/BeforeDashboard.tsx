@@ -148,6 +148,25 @@ export const BeforeDashboard: React.FC = () => {
               <span>View Live Website</span>
               <span>↗</span>
             </a>
+            <a
+              href="/api/logout"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.6rem 1rem',
+                fontSize: '0.84rem',
+                fontWeight: 700,
+                borderRadius: '8px',
+                border: '1px solid rgba(220, 38, 38, 0.35)',
+                background: 'rgba(254, 242, 242, 0.9)',
+                color: '#b91c1c',
+                textDecoration: 'none',
+                boxShadow: '0 1px 3px rgba(185, 28, 28, 0.08)',
+              }}
+            >
+              <span>🚪 Sign Out</span>
+            </a>
           </div>
         </div>
 
