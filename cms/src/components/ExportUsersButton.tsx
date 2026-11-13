@@ -26,6 +26,8 @@ export const ExportUsersButton: React.FC = () => {
       </div>
       <a
         href="/api/export-users"
+        target="_blank"
+        rel="noopener noreferrer"
         download="AMN-SK-Member-Roster.csv"
         style={{
           display: 'inline-flex',

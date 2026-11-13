@@ -243,6 +243,8 @@ export const BeforeDashboard: React.FC = () => {
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <a
             href="/api/export-applications"
+            target="_blank"
+            rel="noopener noreferrer"
             download="AMN-SK-Membership-Applications.csv"
             style={{
               display: 'inline-flex',
@@ -263,6 +265,8 @@ export const BeforeDashboard: React.FC = () => {
           </a>
           <a
             href="/api/export-users"
+            target="_blank"
+            rel="noopener noreferrer"
             download="AMN-SK-Member-Roster.csv"
             style={{
               display: 'inline-flex',
