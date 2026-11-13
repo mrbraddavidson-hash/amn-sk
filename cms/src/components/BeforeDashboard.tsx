@@ -107,6 +107,26 @@ export const BeforeDashboard: React.FC = () => {
 
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
             <a
+              href="/api/export-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.6rem 1.15rem',
+                fontSize: '0.84rem',
+                fontWeight: 700,
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
+                color: '#ffffff',
+                textDecoration: 'none',
+                boxShadow: '0 2px 8px rgba(13, 148, 136, 0.35)',
+              }}
+            >
+              <span>📦 Export Complete Backup (.ZIP)</span>
+            </a>
+            <a
               href="https://amn-sk.pages.dev"
               target="_blank"
               rel="noopener noreferrer"
