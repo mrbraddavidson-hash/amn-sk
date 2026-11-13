@@ -37,6 +37,7 @@ export default buildConfig({
         Icon: '/components/Icon#Icon',
       },
       beforeDashboard: ['/components/BeforeDashboard#BeforeDashboard'],
+      beforeNavLinks: ['/components/BeforeNavLinks#BeforeNavLinks'],
       afterNavLinks: ['/components/AfterNavLinks#AfterNavLinks'],
     },
     importMap: {
