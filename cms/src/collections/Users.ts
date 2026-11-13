@@ -11,37 +11,6 @@ export const Users: CollectionConfig = {
       beforeListTable: ['/components/ExportUsersButton#ExportUsersButton'],
     },
   },
-  endpoints: [
-    {
-      path: '/export',
-      method: 'get',
-      handler: async (req) => {
-        const { payload } = req
-        const data = await payload.find({
-          collection: 'users',
-          limit: 1000,
-          depth: 0,
-        })
-        const headers = ['ID', 'Full Name', 'Email', 'Role', 'Status', 'Organization', 'Created Date']
-        const rows = data.docs.map((d: any) => [
-          d.id,
-          `"${(d.fullName || '').replace(/"/g, '""')}"`,
-          `"${(d.email || '').replace(/"/g, '""')}"`,
-          `"${(d.role || '').replace(/"/g, '""')}"`,
-          `"${(d.status || '').replace(/"/g, '""')}"`,
-          `"${(d.organization || '').replace(/"/g, '""')}"`,
-          `"${d.createdAt || ''}"`,
-        ].join(','))
-        const csv = [headers.join(','), ...rows].join('\r\n')
-        return new Response(csv, {
-          headers: {
-            'Content-Type': 'text/csv; charset=utf-8',
-            'Content-Disposition': 'attachment; filename="AMN-SK-Member-Roster.csv"',
-          },
-        })
-      },
-    },
-  ],
   auth: {
     forgotPassword: {
       generateEmailSubject: () => 'Reset your Mentor Network password',

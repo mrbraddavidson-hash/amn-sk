@@ -242,7 +242,7 @@ export const BeforeDashboard: React.FC = () => {
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <a
-            href="/api/membership-requests/export"
+            href="/api/export-applications"
             download="AMN-SK-Membership-Applications.csv"
             style={{
               display: 'inline-flex',
@@ -262,7 +262,7 @@ export const BeforeDashboard: React.FC = () => {
             <span>⬇ Applications (.CSV)</span>
           </a>
           <a
-            href="/api/users/export"
+            href="/api/export-users"
             download="AMN-SK-Member-Roster.csv"
             style={{
               display: 'inline-flex',

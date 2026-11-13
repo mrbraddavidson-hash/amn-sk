@@ -25,7 +25,7 @@ export const ExportApplicationsButton: React.FC = () => {
         </div>
       </div>
       <a
-        href="/api/membership-requests/export"
+        href="/api/export-applications"
         download="AMN-SK-Membership-Applications.csv"
         style={{
           display: 'inline-flex',

@@ -11,40 +11,6 @@ export const MembershipRequests: CollectionConfig = {
       beforeListTable: ['/components/ExportApplicationsButton#ExportApplicationsButton'],
     },
   },
-  endpoints: [
-    {
-      path: '/export',
-      method: 'get',
-      handler: async (req) => {
-        const { payload } = req
-        const data = await payload.find({
-          collection: 'membership-requests',
-          limit: 1000,
-          depth: 0,
-        })
-        const headers = ['ID', 'Full Name', 'Email', 'Phone', 'Requested Role', 'Status', 'Organization', 'Clinical Background', 'Statement Of Interest', 'Submitted Date']
-        const rows = data.docs.map((d: any) => [
-          d.id,
-          `"${(d.fullName || '').replace(/"/g, '""')}"`,
-          `"${(d.email || '').replace(/"/g, '""')}"`,
-          `"${(d.phone || '').replace(/"/g, '""')}"`,
-          `"${(d.requestedRole || '').replace(/"/g, '""')}"`,
-          `"${(d.status || '').replace(/"/g, '""')}"`,
-          `"${(d.organization || '').replace(/"/g, '""')}"`,
-          `"${(d.clinicalBackground || '').replace(/"/g, '""')}"`,
-          `"${(d.statementOfInterest || '').replace(/"/g, '""')}"`,
-          `"${d.createdAt || ''}"`,
-        ].join(','))
-        const csv = [headers.join(','), ...rows].join('\r\n')
-        return new Response(csv, {
-          headers: {
-            'Content-Type': 'text/csv; charset=utf-8',
-            'Content-Disposition': 'attachment; filename="AMN-SK-Membership-Applications.csv"',
-          },
-        })
-      },
-    },
-  ],
   access: {
     // Anyone (even public visitors) can submit an application form
     create: () => true,
