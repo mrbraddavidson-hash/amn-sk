@@ -176,9 +176,38 @@
     padding: 0.2rem 0.65rem !important;
   }
 
-  /* Header Bar */
+  /* Header Bar & StepNav Breadcrumbs */
   .app-header {
     border-bottom: 1px solid var(--theme-elevation-150) !important;
     backdrop-filter: blur(8px);
+  }
+
+  .step-nav {
+    align-items: center !important;
+  }
+
+  .step-nav__home {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+
+  .step-nav__home span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .graphic-icon {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
   }
 }
