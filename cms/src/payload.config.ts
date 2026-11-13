@@ -36,6 +36,8 @@ export default buildConfig({
         Logo: '/components/Logo#Logo',
         Icon: '/components/Icon#Icon',
       },
+      beforeDashboard: ['/components/BeforeDashboard#BeforeDashboard'],
+      afterNavLinks: ['/components/AfterNavLinks#AfterNavLinks'],
     },
     importMap: {
       baseDir: path.resolve(dirname),
