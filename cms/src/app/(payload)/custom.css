@@ -226,4 +226,9 @@
     max-width: 20px !important;
     max-height: 20px !important;
   }
+
+  /* Clean Minimal Dashboard: Hide redundant raw collection boxes */
+  .modular-dashboard {
+    display: none !important;
+  }
 }
