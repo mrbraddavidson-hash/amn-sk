@@ -1,5 +1,6 @@
 /* ==========================================================================
    Clinical & Healthcare UI Theme for Mentor Network (AMN-SK)
+   High-Contrast, Accessible & Readable Typography (WCAG 2.2 AA)
    Tailored for Dr. Melissa Holowaty, PhD, MD & Steering Committee
    ========================================================================== */
 
@@ -12,248 +13,25 @@
     --brand-teal-hover: #0f766e;
     --brand-spruce: #047857;
     --brand-glow: rgba(2, 132, 199, 0.22);
-    --clinical-border: rgba(2, 132, 199, 0.16);
+    --clinical-border: rgba(2, 132, 199, 0.25);
     --clinical-ice: #f0fdfa;
     --style-radius-s: 6px;
     --style-radius-m: 10px;
     --style-radius-l: 14px;
   }
 
-  /* Body & Antialiasing */
+  /* Body & Font Hierarchy */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
   }
 
-  /* Navigation Sidebar Clinical Styling */
+  /* Navigation Sidebar - High Readability & Sizing */
   .nav {
     border-right: 1px solid var(--theme-elevation-150) !important;
-  }
-
-  .nav-group {
-    margin-bottom: 1.35rem !important;
-  }
-
-  .nav-group__toggle,
-  .nav-group__label {
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.09em !important;
-    color: var(--brand-teal) !important;
-    padding: 0.45rem 0.85rem !important;
-    margin-bottom: 0.3rem !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-  }
-
-  a.nav__link {
-    border-radius: 8px !important;
-    margin: 0.2rem 0.6rem !important;
-    padding: 0.55rem 0.9rem !important;
-    font-size: 0.88rem !important;
-    font-weight: 500 !important;
-    transition: all 0.15s ease-in-out !important;
-  }
-
-  a.nav__link:hover {
-    background-color: rgba(2, 132, 199, 0.09) !important;
-    color: var(--brand-primary) !important;
-    transform: translateX(3px) !important;
-  }
-
-  a.nav__link--active {
-    background: linear-gradient(90deg, rgba(2, 132, 199, 0.15) 0%, rgba(13, 148, 136, 0.08) 100%) !important;
-    color: var(--brand-primary) !important;
-    font-weight: 700 !important;
-    border-left: 3px solid var(--brand-primary) !important;
-    box-shadow: inset 1px 0 0 rgba(2, 132, 199, 0.2) !important;
-  }
-
-  /* Dashboard Collection Cards */
-  .dashboard__card,
-  .card,
-  .collection-list__card {
-    border-radius: 12px !important;
-    border: 1px solid var(--theme-elevation-150) !important;
-    background: var(--theme-elevation-0) !important;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02) !important;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    overflow: hidden !important;
-  }
-
-  .dashboard__card:hover,
-  .card:hover,
-  .collection-list__card:hover {
-    border-color: rgba(2, 132, 199, 0.5) !important;
-    box-shadow: 0 10px 24px -4px rgba(2, 132, 199, 0.14), 0 4px 10px -2px rgba(2, 132, 199, 0.06) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /* Buttons */
-  .btn--style-primary {
-    --bg-color: var(--brand-primary);
-    --hover-bg: var(--brand-primary-hover);
-    --color: #ffffff;
-    --hover-color: #ffffff;
-    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-    border-radius: 8px !important;
-    border: none !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.01em !important;
-    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.28) !important;
-    transition: all 0.18s ease-in-out !important;
-  }
-
-  .btn--style-primary:hover {
-    background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.38) !important;
-    transform: translateY(-1px) !important;
-  }
-
-  .btn--style-secondary {
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    border: 1px solid var(--theme-elevation-200) !important;
-    transition: all 0.15s ease-in-out !important;
-  }
-
-  .btn--style-secondary:hover {
-    border-color: var(--brand-primary) !important;
-    color: var(--brand-primary) !important;
-    background-color: rgba(2, 132, 199, 0.05) !important;
-  }
-
-  /* Data Tables */
-  .table-wrap,
-  .collection-list {
-    border-radius: 10px !important;
-    border: 1px solid var(--theme-elevation-150) !important;
-    overflow: hidden !important;
-  }
-
-  table.table thead th {
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.07em !important;
-    color: var(--theme-elevation-600) !important;
-    background-color: var(--theme-elevation-50) !important;
-    border-bottom: 1px solid var(--theme-elevation-150) !important;
-    padding: 0.8rem 1rem !important;
-  }
-
-  table.table tbody tr {
-    transition: background-color 0.12s ease !important;
-  }
-
-  table.table tbody tr:hover {
-    background-color: rgba(2, 132, 199, 0.04) !important;
-  }
-
-  table.table tbody td {
-    padding: 0.85rem 1rem !important;
-    border-bottom: 1px solid var(--theme-elevation-100) !important;
-  }
-
-  /* Form Inputs & Fields */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="number"],
-  textarea,
-  select,
-  .react-select__control {
-    border-radius: 8px !important;
-    border: 1px solid var(--theme-elevation-200) !important;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
-  }
-
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="password"]:focus,
-  input[type="number"]:focus,
-  textarea:focus,
-  select:focus,
-  .react-select__control--is-focused {
-    border-color: var(--brand-primary) !important;
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18) !important;
-    outline: none !important;
-  }
-
-  /* Status Pills */
-  .pill {
-    border-radius: 9999px !important;
-    font-weight: 600 !important;
-    font-size: 0.75rem !important;
-    padding: 0.2rem 0.65rem !important;
-  }
-
-  /* App Header Bar */
-  .app-header {
-    border-bottom: 1px solid var(--theme-elevation-150) !important;
-    backdrop-filter: blur(10px) !important;
-  }
-
-  /* StepNav Breadcrumbs: Turn home icon into an obvious clickable Dashboard button */
-  .step-nav {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-    flex-wrap: wrap !important;
-  }
-
-  .step-nav__home {
-    width: auto !important;
-    height: auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.35rem !important;
-    padding: 0.25rem 0.65rem !important;
-    background: rgba(2, 132, 199, 0.1) !important;
-    border: 1px solid rgba(2, 132, 199, 0.28) !important;
-    border-radius: 6px !important;
-    text-decoration: none !important;
-    transition: all 0.15s ease !important;
-  }
-
-  .step-nav__home:hover {
-    background: rgba(2, 132, 199, 0.18) !important;
-    border-color: var(--brand-primary) !important;
-    transform: translateY(-1px) !important;
-  }
-
-  .step-nav__home span {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 14px !important;
-    height: 14px !important;
-  }
-
-  .step-nav__home::after {
-    content: "Dashboard" !important;
-    font-size: 0.76rem !important;
-    font-weight: 700 !important;
-    color: var(--brand-primary) !important;
-    letter-spacing: 0.02em !important;
-  }
-
-  .graphic-icon {
-    display: block !important;
-    width: 14px !important;
-    height: 14px !important;
-  }
-
-  /* Clean Minimal Dashboard: Hide redundant raw collection boxes */
-  .modular-dashboard {
-    display: none !important;
-  }
-
-  /* Mobile Nav Sticky Footer & Scroll Container */
-  .nav {
     display: flex !important;
     flex-direction: column !important;
     max-height: 100vh !important;
@@ -264,6 +42,52 @@
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 5rem !important;
+  }
+
+  .nav-group {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .nav-group__toggle,
+  .nav-group__label {
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #0369a1 !important;
+    padding: 0.6rem 0.9rem !important;
+    margin-bottom: 0.35rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+  }
+
+  [data-theme="dark"] .nav-group__toggle,
+  [data-theme="dark"] .nav-group__label {
+    color: #38bdf8 !important;
+  }
+
+  a.nav__link {
+    border-radius: 8px !important;
+    margin: 0.25rem 0.6rem !important;
+    padding: 0.65rem 0.95rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: var(--theme-text) !important;
+    transition: all 0.15s ease-in-out !important;
+  }
+
+  a.nav__link:hover {
+    background-color: rgba(2, 132, 199, 0.12) !important;
+    color: var(--brand-primary) !important;
+    transform: translateX(3px) !important;
+  }
+
+  a.nav__link--active {
+    background: rgba(2, 132, 199, 0.16) !important;
+    color: var(--brand-primary) !important;
+    font-weight: 700 !important;
+    border-left: 3px solid var(--brand-primary) !important;
   }
 
   .nav__controls {
@@ -277,5 +101,116 @@
     align-items: center !important;
     justify-content: space-between !important;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* App Header & Breadcrumbs */
+  .app-header {
+    border-bottom: 1px solid var(--theme-elevation-150) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .step-nav {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+  }
+
+  .step-nav__home {
+    width: auto !important;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    padding: 0.35rem 0.85rem !important;
+    background: rgba(2, 132, 199, 0.12) !important;
+    border: 1px solid rgba(2, 132, 199, 0.35) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: all 0.15s ease !important;
+  }
+
+  .step-nav__home:hover {
+    background: rgba(2, 132, 199, 0.22) !important;
+    border-color: var(--brand-primary) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .step-nav__home span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .step-nav__home::after {
+    content: "Main Dashboard" !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    color: var(--brand-primary) !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  [data-theme="dark"] .step-nav__home::after {
+    color: #38bdf8 !important;
+  }
+
+  .graphic-icon {
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Tables & Lists High Readability */
+  table.table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+    font-size: 0.95rem !important;
+  }
+
+  table.table thead th {
+    font-size: 0.84rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: var(--theme-elevation-800) !important;
+    background: var(--theme-elevation-50) !important;
+    padding: 0.9rem 1.15rem !important;
+    border-bottom: 2px solid var(--theme-elevation-200) !important;
+  }
+
+  table.table tbody tr:hover {
+    background-color: rgba(2, 132, 199, 0.06) !important;
+  }
+
+  table.table tbody td {
+    padding: 1rem 1.15rem !important;
+    border-bottom: 1px solid var(--theme-elevation-150) !important;
+    font-size: 0.95rem !important;
+    color: var(--theme-text) !important;
+  }
+
+  /* Form Inputs & Fields */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select,
+  .react-select__control {
+    font-size: 0.95rem !important;
+    padding: 0.65rem 0.9rem !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--theme-elevation-200) !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  /* Clean Minimal Dashboard: Hide redundant raw collection boxes */
+  .modular-dashboard {
+    display: none !important;
   }
 }

@@ -5,29 +5,29 @@ export const AfterNavLinks: React.FC = () => {
     <div
       style={{
         marginTop: '1.5rem',
-        padding: '1rem',
-        margin: '1.5rem 0.75rem 0.75rem 0.75rem',
-        borderRadius: '10px',
-        background: 'linear-gradient(180deg, rgba(2, 132, 199, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)',
-        border: '1px solid rgba(2, 132, 199, 0.15)',
+        padding: '1.15rem',
+        margin: '1.5rem 0.75rem 1.5rem 0.75rem',
+        borderRadius: '12px',
+        background: 'var(--theme-elevation-50)',
+        border: '1px solid var(--theme-elevation-200)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.45rem' }}>
         <span
           style={{
-            width: '8px',
-            height: '8px',
+            width: '10px',
+            height: '10px',
             borderRadius: '50%',
             background: '#10b981',
-            boxShadow: '0 0 0 2px rgba(16, 185, 129, 0.25)',
+            boxShadow: '0 0 0 2px rgba(16, 185, 129, 0.3)',
           }}
         />
         <span
           style={{
-            fontSize: '0.72rem',
-            fontWeight: 700,
+            fontSize: '0.82rem',
+            fontWeight: 800,
             textTransform: 'uppercase',
-            letterSpacing: '0.05em',
+            letterSpacing: '0.06em',
             color: 'var(--theme-text)',
           }}
         >
@@ -35,7 +35,7 @@ export const AfterNavLinks: React.FC = () => {
         </span>
       </div>
 
-      <div style={{ fontSize: '0.75rem', color: 'var(--theme-elevation-600)', marginBottom: '0.75rem', lineHeight: 1.35 }}>
+      <div style={{ fontSize: '0.88rem', color: 'var(--theme-text)', opacity: 0.85, marginBottom: '0.85rem', lineHeight: 1.45 }}>
         Preview your published changes directly on the live network.
       </div>
 
@@ -47,20 +47,20 @@ export const AfterNavLinks: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.35rem',
+          gap: '0.45rem',
           width: '100%',
-          padding: '0.45rem 0.6rem',
-          borderRadius: '6px',
-          background: 'var(--theme-elevation-0)',
-          border: '1px solid var(--theme-elevation-200)',
+          padding: '0.65rem 0.85rem',
+          borderRadius: '8px',
+          background: 'var(--theme-elevation-100)',
+          border: '1px solid var(--theme-elevation-300)',
           color: 'var(--theme-text)',
-          fontSize: '0.75rem',
-          fontWeight: 600,
+          fontSize: '0.88rem',
+          fontWeight: 700,
           textDecoration: 'none',
         }}
       >
         <span>Open amn-sk.pages.dev</span>
-        <span style={{ fontSize: '0.85rem' }}>↗</span>
+        <span style={{ fontSize: '0.95rem' }}>↗</span>
       </a>
     </div>
   )

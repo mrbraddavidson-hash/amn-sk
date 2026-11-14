@@ -39,16 +39,16 @@ export const BeforeDashboard: React.FC = () => {
   }, [])
 
   return (
-    <div style={{ maxWidth: '1280px', margin: '0 auto 2.5rem auto' }}>
+    <div style={{ maxWidth: '1320px', margin: '0 auto 3rem auto', padding: '0 0.5rem' }}>
       {/* Institutional Top Banner */}
       <div
         style={{
-          padding: '1.75rem 2rem',
-          background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(13, 148, 136, 0.06) 100%)',
-          border: '1px solid rgba(2, 132, 199, 0.22)',
+          padding: '2rem 2.25rem',
+          background: 'var(--theme-elevation-50)',
+          border: '1px solid var(--theme-elevation-200)',
           borderRadius: '16px',
-          boxShadow: '0 4px 20px -2px rgba(2, 132, 199, 0.05)',
-          marginBottom: '2rem',
+          boxShadow: '0 4px 20px -2px rgba(0, 0, 0, 0.06)',
+          marginBottom: '2.5rem',
         }}
       >
         <div
@@ -57,20 +57,20 @@ export const BeforeDashboard: React.FC = () => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '1rem',
-            marginBottom: '0.85rem',
+            gap: '1.25rem',
+            marginBottom: '1.25rem',
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem', flexWrap: 'wrap' }}>
               <span
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.35rem',
-                  padding: '0.22rem 0.7rem',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
+                  gap: '0.45rem',
+                  padding: '0.35rem 0.85rem',
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
                   borderRadius: '9999px',
@@ -80,24 +80,25 @@ export const BeforeDashboard: React.FC = () => {
               >
                 <span
                   style={{
-                    width: '6px',
-                    height: '6px',
+                    width: '8px',
+                    height: '8px',
                     borderRadius: '50%',
                     background: '#a7f3d0',
                   }}
                 />
                 Cohort 2026/2027 Active
               </span>
-              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#0d9488' }}>
+              <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--theme-text)' }}>
                 🏥 Saskatchewan Health Authority Clinical Partner · AMN-SK
               </span>
             </div>
             <h1
               style={{
                 margin: 0,
-                fontSize: '1.65rem',
+                fontSize: '1.95rem',
                 fontWeight: 800,
                 letterSpacing: '-0.02em',
+                lineHeight: 1.25,
                 color: 'var(--theme-text)',
               }}
             >
@@ -105,7 +106,7 @@ export const BeforeDashboard: React.FC = () => {
             </h1>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <a
               href="/api/export-all"
               target="_blank"
@@ -113,15 +114,15 @@ export const BeforeDashboard: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.6rem 1.15rem',
-                fontSize: '0.84rem',
+                gap: '0.5rem',
+                padding: '0.75rem 1.35rem',
+                fontSize: '0.92rem',
                 fontWeight: 700,
-                borderRadius: '8px',
+                borderRadius: '9px',
                 background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
                 color: '#ffffff',
                 textDecoration: 'none',
-                boxShadow: '0 2px 8px rgba(13, 148, 136, 0.35)',
+                boxShadow: '0 3px 10px rgba(13, 148, 136, 0.35)',
               }}
             >
               <span>📦 Export Complete Backup (.ZIP)</span>
@@ -133,19 +134,19 @@ export const BeforeDashboard: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.6rem 1.1rem',
-                fontSize: '0.84rem',
-                fontWeight: 600,
-                borderRadius: '8px',
-                border: '1px solid rgba(2, 132, 199, 0.35)',
-                background: 'var(--theme-elevation-0)',
+                gap: '0.45rem',
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.92rem',
+                fontWeight: 700,
+                borderRadius: '9px',
+                border: '1px solid var(--theme-elevation-300)',
+                background: 'var(--theme-elevation-100)',
                 color: 'var(--theme-text)',
                 textDecoration: 'none',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
               }}
             >
-              <span>View Live Website</span>
+              <span>View Public Website</span>
               <span>↗</span>
             </a>
             <a
@@ -153,16 +154,16 @@ export const BeforeDashboard: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.6rem 1rem',
-                fontSize: '0.84rem',
+                gap: '0.45rem',
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.92rem',
                 fontWeight: 700,
-                borderRadius: '8px',
-                border: '1px solid rgba(220, 38, 38, 0.35)',
-                background: 'rgba(254, 242, 242, 0.9)',
-                color: '#b91c1c',
+                borderRadius: '9px',
+                border: '1px solid rgba(220, 38, 38, 0.4)',
+                background: '#dc2626',
+                color: '#ffffff',
                 textDecoration: 'none',
-                boxShadow: '0 1px 3px rgba(185, 28, 28, 0.08)',
+                boxShadow: '0 2px 6px rgba(220, 38, 38, 0.3)',
               }}
             >
               <span>🚪 Sign Out</span>
@@ -172,39 +173,40 @@ export const BeforeDashboard: React.FC = () => {
 
         <p
           style={{
-            margin: '0 0 1rem 0',
-            fontSize: '0.92rem',
-            color: 'var(--theme-elevation-700)',
-            lineHeight: 1.5,
-            maxWidth: '820px',
+            margin: '0 0 1.35rem 0',
+            fontSize: '1.02rem',
+            color: 'var(--theme-text)',
+            lineHeight: 1.6,
+            maxWidth: '920px',
+            opacity: 0.9,
           }}
         >
-          Welcome, Dr. Holowaty & Coordinators. Manage clinical mentorship onboarding, review incoming physician applications, update the leadership team, and publish CME workshops and news.
+          Welcome, Dr. Holowaty & Coordinators. Manage clinical mentorship onboarding, review incoming physician applications, update the leadership directory, and publish CME workshops and news.
         </p>
 
-        {/* Live Metrics Ribbon */}
+        {/* Live Metrics Ribbon - High Contrast Badges */}
         <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '0.65rem',
+            gap: '0.85rem',
             alignItems: 'center',
-            paddingTop: '0.85rem',
-            borderTop: '1px solid rgba(2, 132, 199, 0.15)',
+            paddingTop: '1.15rem',
+            borderTop: '1px solid var(--theme-elevation-200)',
           }}
         >
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.3rem 0.75rem',
-              borderRadius: '8px',
-              background: 'rgba(234, 179, 8, 0.12)',
-              border: '1px solid rgba(234, 179, 8, 0.3)',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              color: '#b45309',
+              gap: '0.55rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid #eab308',
+              fontSize: '0.92rem',
+              fontWeight: 800,
+              color: 'var(--theme-text)',
             }}
           >
             <span>📋</span>
@@ -215,14 +217,14 @@ export const BeforeDashboard: React.FC = () => {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.3rem 0.75rem',
-              borderRadius: '8px',
-              background: 'rgba(13, 148, 136, 0.12)',
-              border: '1px solid rgba(13, 148, 136, 0.3)',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              color: '#0f766e',
+              gap: '0.55rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid #0d9488',
+              fontSize: '0.92rem',
+              fontWeight: 800,
+              color: 'var(--theme-text)',
             }}
           >
             <span>🩺</span>
@@ -233,14 +235,14 @@ export const BeforeDashboard: React.FC = () => {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.3rem 0.75rem',
-              borderRadius: '8px',
-              background: 'rgba(99, 102, 241, 0.12)',
-              border: '1px solid rgba(99, 102, 241, 0.3)',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              color: '#4338ca',
+              gap: '0.55rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid #6366f1',
+              fontSize: '0.92rem',
+              fontWeight: 800,
+              color: 'var(--theme-text)',
             }}
           >
             <span>🔒</span>
@@ -251,34 +253,34 @@ export const BeforeDashboard: React.FC = () => {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.3rem 0.75rem',
-              borderRadius: '8px',
-              background: 'rgba(2, 132, 199, 0.12)',
-              border: '1px solid rgba(2, 132, 199, 0.3)',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              color: '#0369a1',
+              gap: '0.55rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid #0284c7',
+              fontSize: '0.92rem',
+              fontWeight: 800,
+              color: 'var(--theme-text)',
             }}
           >
             <span>🍁</span>
-            <span>Canadian Storage (AWS Montreal)</span>
+            <span>Canadian Storage (AWS Montreal / Neon Central)</span>
           </div>
         </div>
       </div>
 
       {/* SECTION 1: MENTORSHIP PROGRAM OPERATIONS */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+      <div style={{ marginBottom: '3rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div>
-            <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--theme-text)', letterSpacing: '-0.01em' }}>
+            <h2 style={{ margin: 0, fontSize: '1.45rem', fontWeight: 800, color: 'var(--theme-text)', letterSpacing: '-0.01em' }}>
               🩺 Mentorship Program Operations
             </h2>
-            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)' }}>
+            <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85 }}>
               Core physician intake, clinician roster management, and protected orientation toolkits.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
             <a
               href="/api/export-applications"
               target="_blank"
@@ -287,14 +289,14 @@ export const BeforeDashboard: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.35rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: '6px',
-                background: 'var(--theme-elevation-0)',
-                border: '1px solid rgba(2, 132, 199, 0.35)',
+                gap: '0.45rem',
+                padding: '0.6rem 1.15rem',
+                borderRadius: '8px',
+                background: 'var(--theme-elevation-100)',
+                border: '1px solid var(--theme-elevation-300)',
                 color: 'var(--theme-text)',
-                fontSize: '0.78rem',
-                fontWeight: 600,
+                fontSize: '0.88rem',
+                fontWeight: 700,
                 textDecoration: 'none',
               }}
             >
@@ -308,14 +310,14 @@ export const BeforeDashboard: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.35rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: '6px',
-                background: 'var(--theme-elevation-0)',
-                border: '1px solid rgba(2, 132, 199, 0.35)',
+                gap: '0.45rem',
+                padding: '0.6rem 1.15rem',
+                borderRadius: '8px',
+                background: 'var(--theme-elevation-100)',
+                border: '1px solid var(--theme-elevation-300)',
                 color: 'var(--theme-text)',
-                fontSize: '0.78rem',
-                fontWeight: 600,
+                fontSize: '0.88rem',
+                fontWeight: 700,
                 textDecoration: 'none',
               }}
             >
@@ -327,38 +329,38 @@ export const BeforeDashboard: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '1.25rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gap: '1.5rem',
           }}
         >
           {/* Card 1: Applications */}
           <div
             style={{
-              padding: '1.5rem',
-              borderRadius: '14px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+              padding: '1.85rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.04)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                <span style={{ fontSize: '1.75rem' }}>📋</span>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '6px', background: 'rgba(234, 179, 8, 0.15)', color: '#b45309' }}>
-                  {counts.applications} Submissions
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '2.1rem' }}>📋</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#fef08a', color: '#854d0e' }}>
+                  {counts.applications} Submissions Awaiting
                 </span>
               </div>
-              <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.15rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.3rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                 Physician Applications
               </h3>
-              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.84rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.6 }}>
                 Review incoming clinician applications. Approving an applicant automatically creates their member login and dispatches a password invitation email.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
               <a
                 href="/admin/collections/membership-requests"
                 style={{
@@ -366,15 +368,15 @@ export const BeforeDashboard: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.4rem',
-                  padding: '0.65rem 1rem',
-                  borderRadius: '8px',
+                  gap: '0.45rem',
+                  padding: '0.8rem 1.25rem',
+                  borderRadius: '9px',
                   background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
                   color: '#ffffff',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 6px rgba(2, 132, 199, 0.3)',
+                  boxShadow: '0 2px 8px rgba(2, 132, 199, 0.3)',
                 }}
               >
                 <span>Review Applications</span>
@@ -386,31 +388,31 @@ export const BeforeDashboard: React.FC = () => {
           {/* Card 2: Clinicians */}
           <div
             style={{
-              padding: '1.5rem',
-              borderRadius: '14px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+              padding: '1.85rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.04)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                <span style={{ fontSize: '1.75rem' }}>🩺</span>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '6px', background: 'rgba(13, 148, 136, 0.15)', color: '#0d9488' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '2.1rem' }}>🩺</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#ccfbf1', color: '#115e59' }}>
                   {counts.users} Active Users
                 </span>
               </div>
-              <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.15rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.3rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                 Clinician Directory
               </h3>
-              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.84rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.6 }}>
                 Manage verified Mentors, Mentees, and Coordinator logins. Assign user roles, reset credentials, or update practice locations.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/users"
                 style={{
@@ -418,15 +420,15 @@ export const BeforeDashboard: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.4rem',
-                  padding: '0.65rem 1rem',
-                  borderRadius: '8px',
+                  gap: '0.45rem',
+                  padding: '0.8rem 1.25rem',
+                  borderRadius: '9px',
                   background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
                   color: '#ffffff',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 6px rgba(13, 148, 136, 0.3)',
+                  boxShadow: '0 2px 8px rgba(13, 148, 136, 0.3)',
                 }}
               >
                 <span>View Directory</span>
@@ -438,13 +440,13 @@ export const BeforeDashboard: React.FC = () => {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '0.65rem 0.9rem',
-                  borderRadius: '8px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-150)',
-                  color: 'var(--theme-elevation-800)',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
+                  padding: '0.8rem 1.15rem',
+                  borderRadius: '9px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
+                  color: 'var(--theme-text)',
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -456,31 +458,31 @@ export const BeforeDashboard: React.FC = () => {
           {/* Card 3: Protected Toolkits */}
           <div
             style={{
-              padding: '1.5rem',
-              borderRadius: '14px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+              padding: '1.85rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.04)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                <span style={{ fontSize: '1.75rem' }}>🔒</span>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '6px', background: 'rgba(99, 102, 241, 0.15)', color: '#6366f1' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '2.1rem' }}>🔒</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#e0e7ff', color: '#3730a3' }}>
                   {counts.resources} Documents
                 </span>
               </div>
-              <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.15rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.3rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                 Clinical Toolkits (Vault)
               </h3>
-              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.84rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.6 }}>
                 Upload confidential PDFs and orientation roadmaps. Served exclusively to verified Mentors or Mentees through authorized Cloudflare R2 streaming.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/resources"
                 style={{
@@ -488,15 +490,15 @@ export const BeforeDashboard: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.4rem',
-                  padding: '0.65rem 1rem',
-                  borderRadius: '8px',
+                  gap: '0.45rem',
+                  padding: '0.8rem 1.25rem',
+                  borderRadius: '9px',
                   background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
                   color: '#ffffff',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 6px rgba(99, 102, 241, 0.3)',
+                  boxShadow: '0 2px 8px rgba(99, 102, 241, 0.3)',
                 }}
               >
                 <span>Manage Toolkits</span>
@@ -508,13 +510,13 @@ export const BeforeDashboard: React.FC = () => {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '0.65rem 0.9rem',
-                  borderRadius: '8px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-150)',
-                  color: 'var(--theme-elevation-800)',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
+                  padding: '0.8rem 1.15rem',
+                  borderRadius: '9px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
+                  color: 'var(--theme-text)',
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -526,12 +528,12 @@ export const BeforeDashboard: React.FC = () => {
       </div>
 
       {/* SECTION 2: PUBLIC WEBSITE & CLINICAL CONTENT */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <div style={{ marginBottom: '1rem' }}>
-          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--theme-text)', letterSpacing: '-0.01em' }}>
+      <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: '1.25rem' }}>
+          <h2 style={{ margin: 0, fontSize: '1.45rem', fontWeight: 800, color: 'var(--theme-text)', letterSpacing: '-0.01em' }}>
             🌐 Public Website & Clinical Education
           </h2>
-          <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)' }}>
+          <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85 }}>
             Publish updates, upcoming workshops, committee biographies, and open patient care roadmaps.
           </p>
         </div>
@@ -539,45 +541,45 @@ export const BeforeDashboard: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.25rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+            gap: '1.5rem',
           }}
         >
           {/* Card 4: Events */}
           <div
             style={{
-              padding: '1.35rem',
-              borderRadius: '12px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
+              padding: '1.65rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '1.4rem' }}>🗓</span>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                <span style={{ fontSize: '1.65rem' }}>🗓</span>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                   CME Workshops & Zoom
                 </h3>
               </div>
-              <p style={{ margin: '0 0 1rem 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.55 }}>
                 Schedule continuing medical education workshops, peer exchanges, and embedded Zoom registration links.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/events"
                 style={{
                   flex: 1,
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-200)',
+                  padding: '0.7rem 1rem',
+                  borderRadius: '8px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
                   color: 'var(--theme-text)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                   textAlign: 'center',
                 }}
@@ -587,12 +589,12 @@ export const BeforeDashboard: React.FC = () => {
               <a
                 href="/admin/collections/events/create"
                 style={{
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
+                  padding: '0.7rem 1.15rem',
+                  borderRadius: '8px',
                   background: '#0284c7',
                   color: '#ffffff',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -604,38 +606,38 @@ export const BeforeDashboard: React.FC = () => {
           {/* Card 5: News */}
           <div
             style={{
-              padding: '1.35rem',
-              borderRadius: '12px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
+              padding: '1.65rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '1.4rem' }}>📰</span>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                <span style={{ fontSize: '1.65rem' }}>📰</span>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                   News & Bulletins
                 </h3>
               </div>
-              <p style={{ margin: '0 0 1rem 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.55 }}>
                 Publish clinical bulletins, network milestones, and announcements to the public news feed.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/news"
                 style={{
                   flex: 1,
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-200)',
+                  padding: '0.7rem 1rem',
+                  borderRadius: '8px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
                   color: 'var(--theme-text)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                   textAlign: 'center',
                 }}
@@ -645,12 +647,12 @@ export const BeforeDashboard: React.FC = () => {
               <a
                 href="/admin/collections/news/create"
                 style={{
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
+                  padding: '0.7rem 1.15rem',
+                  borderRadius: '8px',
                   background: '#0284c7',
                   color: '#ffffff',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -662,53 +664,53 @@ export const BeforeDashboard: React.FC = () => {
           {/* Card 6: Team & Leadership */}
           <div
             style={{
-              padding: '1.35rem',
-              borderRadius: '12px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
+              padding: '1.65rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '1.4rem' }}>👥</span>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                <span style={{ fontSize: '1.65rem' }}>👥</span>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                   Leadership & Committee
                 </h3>
               </div>
-              <p style={{ margin: '0 0 1rem 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
-                Update biographies, clinical credentials, and committee roles for Dr. Holowaty, Megan O'Reilly, and leadership leads.
+              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.55 }}>
+                Update biographies, clinical credentials, and committee roles for Dr. Holowaty, Josh, and leadership leads.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/team-members"
                 style={{
                   flex: 1,
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-200)',
+                  padding: '0.7rem 1rem',
+                  borderRadius: '8px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
                   color: 'var(--theme-text)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                   textAlign: 'center',
                 }}
               >
-                View Leadership ({counts.team})
+                View Directory ({counts.team})
               </a>
               <a
                 href="/admin/collections/team-members/create"
                 style={{
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
+                  padding: '0.7rem 1.15rem',
+                  borderRadius: '8px',
                   background: '#0284c7',
                   color: '#ffffff',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -720,38 +722,38 @@ export const BeforeDashboard: React.FC = () => {
           {/* Card 7: Media & Assets */}
           <div
             style={{
-              padding: '1.35rem',
-              borderRadius: '12px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-150)',
+              padding: '1.65rem',
+              borderRadius: '16px',
+              background: 'var(--theme-elevation-50)',
+              border: '1px solid var(--theme-elevation-200)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '1.4rem' }}>📁</span>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                <span style={{ fontSize: '1.65rem' }}>📁</span>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--theme-text)' }}>
                   Media & Documents
                 </h3>
               </div>
-              <p style={{ margin: '0 0 1rem 0', fontSize: '0.82rem', color: 'var(--theme-elevation-600)', lineHeight: 1.45 }}>
+              <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.55 }}>
                 Cloud-stored photos, brand logos, PDF checklists, and attachments hosted on Vercel Blob / Cloudflare R2.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.65rem' }}>
               <a
                 href="/admin/collections/media"
                 style={{
                   flex: 1,
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
-                  background: 'var(--theme-elevation-50)',
-                  border: '1px solid var(--theme-elevation-200)',
+                  padding: '0.7rem 1rem',
+                  borderRadius: '8px',
+                  background: 'var(--theme-elevation-100)',
+                  border: '1px solid var(--theme-elevation-300)',
                   color: 'var(--theme-text)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                   textAlign: 'center',
                 }}
@@ -761,12 +763,12 @@ export const BeforeDashboard: React.FC = () => {
               <a
                 href="/admin/collections/media/create"
                 style={{
-                  padding: '0.55rem 0.85rem',
-                  borderRadius: '6px',
+                  padding: '0.7rem 1.15rem',
+                  borderRadius: '8px',
                   background: '#0284c7',
                   color: '#ffffff',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
                   textDecoration: 'none',
                 }}
               >
@@ -777,40 +779,40 @@ export const BeforeDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* SECTION 3: SITE SETTINGS & HOMEPAGE FOOTER BAR */}
+      {/* SECTION 3: SITE SETTINGS & DIRECT JUMP LINKS */}
       <div
         style={{
-          padding: '1.25rem 1.75rem',
-          borderRadius: '12px',
+          padding: '1.5rem 2rem',
+          borderRadius: '16px',
           background: 'var(--theme-elevation-50)',
-          border: '1px solid var(--theme-elevation-150)',
+          border: '1px solid var(--theme-elevation-200)',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '1rem',
+          gap: '1.25rem',
         }}
       >
         <div>
-          <div style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--theme-text)' }}>
+          <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--theme-text)' }}>
             💬 Homepage Content & Direct Jump Links
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--theme-elevation-600)', marginTop: '0.15rem' }}>
+          <div style={{ fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, marginTop: '0.25rem' }}>
             Quickly update homepage quotes, expandable FAQ accordions, or jump directly to live public sections.
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
           <a
             href="/admin/collections/quotes"
             style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: '6px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-200)',
+              padding: '0.65rem 1.1rem',
+              borderRadius: '8px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid var(--theme-elevation-300)',
               color: 'var(--theme-text)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
+              fontSize: '0.88rem',
+              fontWeight: 700,
               textDecoration: 'none',
             }}
           >
@@ -819,13 +821,13 @@ export const BeforeDashboard: React.FC = () => {
           <a
             href="/admin/collections/faqs"
             style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: '6px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-200)',
+              padding: '0.65rem 1.1rem',
+              borderRadius: '8px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid var(--theme-elevation-300)',
               color: 'var(--theme-text)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
+              fontSize: '0.88rem',
+              fontWeight: 700,
               textDecoration: 'none',
             }}
           >
@@ -836,13 +838,13 @@ export const BeforeDashboard: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: '6px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-200)',
+              padding: '0.65rem 1.1rem',
+              borderRadius: '8px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid var(--theme-elevation-300)',
               color: 'var(--theme-text)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
+              fontSize: '0.88rem',
+              fontWeight: 700,
               textDecoration: 'none',
             }}
           >
@@ -853,13 +855,13 @@ export const BeforeDashboard: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: '6px',
-              background: 'var(--theme-elevation-0)',
-              border: '1px solid var(--theme-elevation-200)',
+              padding: '0.65rem 1.1rem',
+              borderRadius: '8px',
+              background: 'var(--theme-elevation-100)',
+              border: '1px solid var(--theme-elevation-300)',
               color: 'var(--theme-text)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
+              fontSize: '0.88rem',
+              fontWeight: 700,
               textDecoration: 'none',
             }}
           >
