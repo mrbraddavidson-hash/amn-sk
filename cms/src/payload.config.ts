@@ -1,7 +1,8 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { r2Storage } from '@payloadcms/storage-r2'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -18,6 +19,22 @@ import { FAQs } from './collections/FAQs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// On Cloudflare Workers, bindings (Hyperdrive, R2) come from the request context.
+// Under the Payload CLI or `next build` there is no Workers context, so fall back
+// to DATABASE_URI and disable R2 uploads.
+async function getBindings() {
+  try {
+    const { env } = await getCloudflareContext({ async: true })
+    return env
+  } catch {
+    return undefined
+  }
+}
+
+const bindings = await getBindings()
+
+const databaseUrl = bindings?.HYPERDRIVE?.connectionString || process.env.DATABASE_URI || ''
 
 export default buildConfig({
   serverURL:
@@ -93,17 +110,18 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   plugins: [
-    vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+    r2Storage({
+      enabled: Boolean(bindings?.MEDIA_BUCKET),
+      // Only used when enabled; the cast covers local runs without the binding.
+      bucket: bindings?.MEDIA_BUCKET as any,
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: databaseUrl,
     },
     schemaName: 'payload',
   }),
