@@ -122,6 +122,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: databaseUrl,
+      // Workers can't reuse a connection opened in a different request, so each
+      // client is used once and discarded; Hyperdrive does the real pooling.
+      ...(bindings?.HYPERDRIVE ? { maxUses: 1, idleTimeoutMillis: 0 } : {}),
     },
     schemaName: 'payload',
   }),
