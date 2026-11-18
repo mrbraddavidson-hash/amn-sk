@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+// Fonts are served from this site, so visitors' requests never go to Google.
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/source-sans-3';
 
 interface Props {
   title?: string;
@@ -46,7 +49,7 @@ const currentPath = Astro.url.pathname;
         <div class="flex justify-between items-center h-20">
           <!-- Logo & Brand -->
           <a href="/" class="flex items-center gap-3 group focus:outline-hidden">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-700 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+            <div class="w-11 h-11 rounded-xl bg-sky-700 border-2 border-amber-400 flex items-center justify-center text-amber-300 font-serif font-semibold text-xl group-hover:bg-sky-800 transition-colors" aria-hidden="true">
               MN
             </div>
             <div>
@@ -103,13 +106,13 @@ const currentPath = Astro.url.pathname;
           <div class="hidden md:flex items-center gap-3">
             <a 
               href="/login" 
-              class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-sky-700 border border-slate-300 rounded-lg hover:border-sky-300 transition-all shadow-2xs"
+              class="whitespace-nowrap px-4 py-2 text-sm font-medium text-slate-700 hover:text-sky-700 border border-slate-300 rounded-lg hover:border-sky-300 transition-all shadow-2xs"
             >
               Member Sign In
             </a>
             <a 
               href="/apply" 
-              class="px-4 py-2 text-sm font-medium text-white bg-sky-700 hover:bg-sky-800 rounded-lg shadow-sm hover:shadow-md transition-all"
+              class="whitespace-nowrap px-4 py-2 text-sm font-medium text-white bg-sky-700 hover:bg-sky-800 rounded-lg shadow-sm hover:shadow-md transition-all"
             >
               Join the Network
             </a>

@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+/*
+  Prairie theme. The pages use Tailwind's colour names (sky, amber, ...) throughout, so the
+  palette is changed here once: "sky" now means prairie green and "amber" means wheat gold.
+  Contrast for every text and button pairing was checked against WCAG AA.
+*/
+@theme {
+  --font-sans: "Source Sans 3 Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
+
+  --color-sky-50: #f1f6f2;
+  --color-sky-100: #e1ece3;
+  --color-sky-200: #c3d8c9;
+  --color-sky-300: #a9c9b3;
+  --color-sky-400: #6fa283;
+  --color-sky-500: #2f7656;
+  --color-sky-600: #276a4d;
+  --color-sky-700: #1f5c45;
+  --color-sky-800: #184a38;
+  --color-sky-900: #11392b;
+  --color-sky-950: #0c2a20;
+
+  --color-amber-50: #fbf6e9;
+  --color-amber-100: #f8e8be;
+  --color-amber-200: #f2d48a;
+  --color-amber-300: #e9bd55;
+  --color-amber-400: #d9a22e;
+  --color-amber-500: #c08a1f;
+  --color-amber-600: #a06f12;
+  --color-amber-700: #7c560e;
+  --color-amber-800: #5c400c;
+  --color-amber-900: #3f2c08;
+  --color-amber-950: #2b1d00;
+}
+
 :root {
-  --primary: #0284c7;
-  --primary-dark: #0369a1;
-  --primary-light: #e0f2fe;
-  --secondary: #0f766e;
-  --accent: #f59e0b;
+  --primary: #1f5c45;
+  --primary-dark: #11392b;
+  --primary-light: #e1ece3;
+  --secondary: #1f5767;
+  --accent: #d9a22e;
   --surface: #ffffff;
-  --background: #f8fafc;
-  --text-main: #0f172a;
-  --text-muted: #475569;
+  --background: #faf6ec;
+  --text-main: #1e2a24;
+  --text-muted: #574f42;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #0f172a;
-  background-color: #f8fafc;
+  font-family: var(--font-sans);
+  color: #1e2a24;
+  background-color: #faf6ec;
   line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
 }
 
 /* Accessible focus ring for WCAG 2.1 AA */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #1f5c45;
   outline-offset: 2px;
 }
