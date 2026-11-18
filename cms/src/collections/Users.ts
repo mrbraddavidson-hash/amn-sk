@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { isAdmin, isAdminOrSelf } from '../access'
+import { requireTurnstile } from '../lib/turnstile'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -22,6 +23,12 @@ export const Users: CollectionConfig = {
     },
   },
   hooks: {
+    // Password-reset requests come from a public form, so they must pass the Turnstile check.
+    beforeOperation: [
+      async ({ operation, req }) => {
+        if (operation === 'forgotPassword') await requireTurnstile(req)
+      },
+    ],
     // Suspended members cannot sign in (their existing sessions also lose restricted access,
     // see canReadResources). Same message as a wrong password so it does not reveal account status.
     beforeLogin: [

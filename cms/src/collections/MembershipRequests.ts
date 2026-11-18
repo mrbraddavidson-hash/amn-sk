@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { isAdmin } from '../access'
+import { requireTurnstile } from '../lib/turnstile'
 import {
   adminNewApplicationEmail,
   applicationReceivedEmail,
@@ -30,6 +31,10 @@ export const MembershipRequests: CollectionConfig = {
   hooks: {
     // The form is public, so a visitor must not be able to pre-set review fields.
     beforeValidate: [
+      // Public submissions must pass the Turnstile check before anything is saved or emailed.
+      async ({ operation, req }) => {
+        if (operation === 'create' && !req.user) await requireTurnstile(req)
+      },
       ({ data, operation, req }) => {
         if (operation === 'create' && !req.user && data) {
           data.status = 'pending'

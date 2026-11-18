@@ -140,6 +140,7 @@ import Layout from '../layouts/Layout.astro';
             ></textarea>
           </div>
 
+          <div class="cf-turnstile my-2" data-sitekey="0x4AAAAAAGHFXY8JT5J0nYMQ" data-theme="light"></div>
           <div id="error-message" class="hidden p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs">
           </div>
 
@@ -158,6 +159,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
     const form = document.getElementById('membership-form') as HTMLFormElement;
     const successMsg = document.getElementById('success-message');
@@ -174,6 +176,18 @@ import Layout from '../layouts/Layout.astro';
         }
 
         const formData = new FormData(form);
+        const turnstileToken = String(formData.get('cf-turnstile-response') || '');
+        if (!turnstileToken) {
+          if (errorMsg) {
+            errorMsg.textContent = 'Please complete the security check, then submit again.';
+            errorMsg.classList.remove('hidden');
+          }
+          if (submitBtn) {
+            submitBtn.removeAttribute('disabled');
+            submitBtn.textContent = 'Submit Membership Application';
+          }
+          return;
+        }
         const payload = {
           fullName: formData.get('fullName'),
           email: formData.get('email'),
@@ -190,6 +204,7 @@ import Layout from '../layouts/Layout.astro';
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'X-Turnstile-Token': turnstileToken,
             },
             body: JSON.stringify(payload),
           });
@@ -202,6 +217,7 @@ import Layout from '../layouts/Layout.astro';
           form.classList.add('hidden');
           if (successMsg) successMsg.classList.remove('hidden');
         } catch (err: any) {
+          (window as any).turnstile?.reset();
           if (errorMsg) {
             errorMsg.textContent = err.message || 'An error occurred. Please try again or contact the network directly.';
             errorMsg.classList.remove('hidden');
