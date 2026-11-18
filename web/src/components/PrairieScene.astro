@@ -1,0 +1,35 @@
+---
+// Decorative prairie landscape (original artwork, drawn in the Prairie palette).
+// Purely visual: hidden from screen readers and carries no information.
+const stalks = Array.from({ length: 40 }, (_, i) => {
+  const x = (i * 20.5 + ((i * 37) % 9)) % 820;
+  const h = 18 + ((i * 53) % 22);
+  return { x, h, lean: ((i * 29) % 7) - 3 };
+});
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 800 240"
+  preserveAspectRatio="xMidYMax slice"
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Sun -->
+  <circle cx="610" cy="78" r="44" fill="#f2d48a" opacity="0.85" />
+  <circle cx="610" cy="78" r="66" fill="#f2d48a" opacity="0.12" />
+  <!-- Distant hills -->
+  <path d="M0 150 Q 140 104 290 144 T 590 136 T 800 150 V240 H0 Z" fill="#2f7656" opacity="0.55" />
+  <!-- Middle hills -->
+  <path d="M0 180 Q 200 146 400 178 T 800 170 V240 H0 Z" fill="#276a4d" opacity="0.8" />
+  <!-- Wheat field in the foreground -->
+  <path d="M0 208 Q 260 188 520 210 T 800 202 V240 H0 Z" fill="#c08a1f" opacity="0.6" />
+  <!-- Wheat stalks -->
+  <g stroke="#f2d48a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.75">
+    {stalks.map((s) => (
+      <path d={`M${s.x} 240 Q ${s.x + s.lean} ${240 - s.h / 2} ${s.x + s.lean * 2} ${240 - s.h}`} />
+    ))}
+  </g>
+</svg>
