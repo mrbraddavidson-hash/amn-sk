@@ -4,7 +4,10 @@ import { isAdmin } from '../access'
 export const canReadResources: Access = ({ req: { user } }) => {
   if (user && user.role === 'admin') return true
 
-  if (user && user.role === 'mentor') {
+  // A suspended member is treated like a visitor: public resources only.
+  const isSuspended = Boolean(user && (user as { status?: string }).status === 'suspended')
+
+  if (user && !isSuspended && user.role === 'mentor') {
     const query: Where = {
       or: [
         { accessLevel: { equals: 'public' } },
@@ -14,7 +17,7 @@ export const canReadResources: Access = ({ req: { user } }) => {
     return query
   }
 
-  if (user && user.role === 'mentee') {
+  if (user && !isSuspended && user.role === 'mentee') {
     const query: Where = {
       or: [
         { accessLevel: { equals: 'public' } },

@@ -21,6 +21,17 @@ export const Users: CollectionConfig = {
       },
     },
   },
+  hooks: {
+    // Suspended members cannot sign in (their existing sessions also lose restricted access,
+    // see canReadResources). Same message as a wrong password so it does not reveal account status.
+    beforeLogin: [
+      ({ user }) => {
+        if ((user as { status?: string }).status === 'suspended') {
+          throw new Error('The email or password provided is incorrect.')
+        }
+      },
+    ],
+  },
   access: {
     read: isAdminOrSelf,
     update: isAdminOrSelf,

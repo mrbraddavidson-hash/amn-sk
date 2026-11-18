@@ -18,8 +18,8 @@ import Layout from '../../layouts/Layout.astro';
       </div>
 
       <div>
-        <button 
-          id="logout-btn" 
+        <button
+          id="logout-btn"
           class="hidden px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 transition-colors"
         >
           Sign Out
@@ -30,14 +30,14 @@ import Layout from '../../layouts/Layout.astro';
 
   <section class="py-12 bg-slate-50 min-h-[60vh]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Unauthenticated State (Shown if not logged in) -->
+
+      <!-- Not signed in / session expired -->
       <div id="auth-required" class="hidden max-w-md mx-auto bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center space-y-4">
         <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto text-xl font-bold">
           !
         </div>
         <h2 class="text-xl font-bold text-slate-900">Authentication Required</h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
+        <p class="text-sm text-slate-600 leading-relaxed" id="auth-message">
           The resources in this area are restricted to verified mentors and mentees. Please sign in to view your role-specific documents.
         </p>
         <div class="pt-2">
@@ -47,97 +47,51 @@ import Layout from '../../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Authenticated Member Content Hub -->
+      <!-- Signed in -->
       <div id="member-content" class="hidden space-y-10">
-        
-        <!-- Mentor Section -->
-        <div id="mentor-section" class="space-y-6">
+
+        <div id="portal-error" class="hidden rounded-xl border border-red-200 bg-red-50 text-red-800 text-sm px-4 py-3" role="alert"></div>
+
+        <div id="empty-state" class="hidden max-w-xl mx-auto bg-white p-8 rounded-2xl border border-slate-200 text-center">
+          <h2 class="text-lg font-bold text-slate-900">No resources yet</h2>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Nothing has been published for your account yet. Please check back soon.
+          </p>
+        </div>
+
+        <!-- Mentor materials -->
+        <div id="mentor-section" class="hidden space-y-6">
           <div class="flex items-center justify-between pb-3 border-b border-slate-200">
             <div>
               <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Restricted Materials</span>
-              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentor Toolkits & Frameworks</h2>
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentor Resources</h2>
             </div>
-            <span class="text-xs font-mono bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">
-              MENTOR ROLE VERIFIED
-            </span>
+            <span class="text-xs font-mono bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">MENTORS ONLY</span>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">📋</span>
-              <h3 class="font-bold text-slate-900 text-base">Mentorship Session Framework</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Structured templates for monthly 1-on-1 progress reviews, goal setting, and clinical check-ins.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">PDF • 1.2 MB</span>
-                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">🤝</span>
-              <h3 class="font-bold text-slate-900 text-base">Coaching & Feedback Playbook</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Techniques for navigating high-stakes transition issues, constructive clinical critique, and boundary setting.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">PDF • 2.4 MB</span>
-                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">🛡️</span>
-              <h3 class="font-bold text-slate-900 text-base">Wellness & Retention Checklists</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Early indicators of clinical exhaustion, rural isolation triggers, and rapid escalation resources in Saskatchewan.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">PDF • 850 KB</span>
-                <a href="#download" class="font-bold text-sky-700 hover:underline">Download ↓</a>
-              </div>
-            </div>
-          </div>
+          <div id="mentor-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- Mentee Section -->
-        <div id="mentee-section" class="space-y-6">
+        <!-- Mentee materials -->
+        <div id="mentee-section" class="hidden space-y-6">
           <div class="flex items-center justify-between pb-3 border-b border-slate-200">
             <div>
               <span class="text-xs font-bold uppercase tracking-wider text-teal-700">Restricted Materials</span>
-              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentee Transition Resources</h2>
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentee Resources</h2>
             </div>
-            <span class="text-xs font-mono bg-teal-100 text-teal-800 px-2.5 py-1 rounded-md font-semibold">
-              MENTEE ROLE VERIFIED
-            </span>
+            <span class="text-xs font-mono bg-teal-100 text-teal-800 px-2.5 py-1 rounded-md font-semibold">MENTEES ONLY</span>
           </div>
+          <div id="mentee-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">🗺️</span>
-              <h3 class="font-bold text-slate-900 text-base">First-Year Practice Roadmap</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Key administrative, billing, and clinical milestones for new practitioners in Saskatchewan health facilities.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">PDF • 3.1 MB</span>
-                <a href="#download" class="font-bold text-teal-700 hover:underline">Download ↓</a>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">📝</span>
-              <h3 class="font-bold text-slate-900 text-base">Mentorship Goal Worksheet</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Interactive preparation sheet to establish your annual clinical goals before pairing meetings.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">DOCX • 520 KB</span>
-                <a href="#download" class="font-bold text-teal-700 hover:underline">Download ↓</a>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border border-teal-100 shadow-2xs hover:shadow-md transition-shadow">
-              <span class="text-2xl mb-2 block">📞</span>
-              <h3 class="font-bold text-slate-900 text-base">Direct Peer Contact Directory</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Access contact preferences, availability windows, and specialty tags for your matched mentors.</p>
-              <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
-                <span class="text-slate-400 font-mono">Confidential Directory</span>
-                <a href="#download" class="font-bold text-teal-700 hover:underline">View Contacts →</a>
-              </div>
+        <!-- Public materials -->
+        <div id="public-section" class="hidden space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Open to everyone</span>
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Shared Resources</h2>
             </div>
           </div>
+          <div id="public-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
 
       </div>
@@ -146,45 +100,236 @@ import Layout from '../../layouts/Layout.astro';
   </section>
 
   <script>
-    const token = localStorage.getItem('amn_member_token');
-    const userStr = localStorage.getItem('amn_member_user');
-    const authRequired = document.getElementById('auth-required');
-    const memberContent = document.getElementById('member-content');
-    const userInfoBar = document.getElementById('user-info-bar');
-    const logoutBtn = document.getElementById('logout-btn');
-    const welcomeTitle = document.getElementById('welcome-title');
-    const mentorSection = document.getElementById('mentor-section');
-    const menteeSection = document.getElementById('mentee-section');
+    // The CMS decides who the member is and what they may see. Nothing stored in the browser is trusted:
+    // we send the saved login token to the CMS, which checks it and applies the role rules.
+    const CMS = 'https://amn-sk-cms.mrbraddavidson.workers.dev';
+    const TOKEN_KEY = 'amn_member_token';
+    const USER_KEY = 'amn_member_user';
 
-    if (!token || !userStr) {
-      if (authRequired) authRequired.classList.remove('hidden');
-      if (userInfoBar) userInfoBar.textContent = 'Please log in to verify your member access.';
-    } else {
+    type FileDoc = { id: number; filename?: string; url?: string; mimeType?: string; filesize?: number };
+    type Resource = {
+      id: number;
+      title: string;
+      description?: string;
+      category?: string;
+      accessLevel: 'public' | 'mentor' | 'mentee';
+      publishedDate?: string;
+      file?: FileDoc | number | null;
+    };
+
+    const $ = (id: string) => document.getElementById(id) as HTMLElement | null;
+    const show = (id: string) => $(id)?.classList.remove('hidden');
+    const hide = (id: string) => $(id)?.classList.add('hidden');
+    const setText = (id: string, text: string) => { const el = $(id); if (el) el.textContent = text; };
+
+    const CATEGORY_LABELS: Record<string, string> = {
+      'health-provider': 'Health Provider Resource',
+      patient: 'Patient Resource',
+      mentor: 'Mentor Resource',
+      mentee: 'Mentee Resource',
+    };
+
+    const THEMES = {
+      mentor: { border: 'border-sky-100', link: 'text-sky-700 hover:underline' },
+      mentee: { border: 'border-teal-100', link: 'text-teal-700 hover:underline' },
+      public: { border: 'border-slate-200', link: 'text-emerald-700 hover:underline' },
+    } as const;
+
+    function clearSession() {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(USER_KEY);
+    }
+
+    function showAuthRequired(message?: string) {
+      if (message) setText('auth-message', message);
+      setText('user-info-bar', 'Please sign in to view your member resources.');
+      hide('member-content');
+      hide('logout-btn');
+      show('auth-required');
+    }
+
+    function showError(message: string) {
+      const box = $('portal-error');
+      if (!box) return;
+      box.textContent = message;
+      box.classList.remove('hidden');
+    }
+
+    function formatSize(bytes?: number) {
+      if (!bytes) return '';
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    function fileDoc(r: Resource): FileDoc | null {
+      return r.file && typeof r.file === 'object' ? r.file : null;
+    }
+
+    function iconFor(file: FileDoc | null) {
+      const name = (file?.filename || '').toLowerCase();
+      if (name.endsWith('.pdf')) return '📄';
+      if (name.endsWith('.doc') || name.endsWith('.docx')) return '📝';
+      if (name.endsWith('.xls') || name.endsWith('.xlsx') || name.endsWith('.csv')) return '📊';
+      return '📎';
+    }
+
+    // Only ever send the login token to the CMS itself.
+    function fileUrl(file: FileDoc): string {
+      const cmsOrigin = new URL(CMS).origin;
       try {
-        const user = JSON.parse(userStr);
-        if (memberContent) memberContent.classList.remove('hidden');
-        if (logoutBtn) logoutBtn.classList.remove('hidden');
-        if (welcomeTitle) welcomeTitle.textContent = `Welcome back, ${user.fullName || user.email}`;
-        if (userInfoBar) userInfoBar.textContent = `Signed in as ${user.email} (${(user.role || 'Member').toUpperCase()})`;
-
-        // Role-based visibility
-        if (user.role === 'mentor') {
-          if (menteeSection) menteeSection.classList.add('hidden');
-        } else if (user.role === 'mentee') {
-          if (mentorSection) mentorSection.classList.add('hidden');
+        if (file.url) {
+          const u = new URL(file.url, CMS);
+          if (u.origin === cmsOrigin) return u.toString();
         }
-        // Admin sees both!
-      } catch (e) {
-        if (authRequired) authRequired.classList.remove('hidden');
+      } catch { /* fall through */ }
+      return `${CMS}/api/resource-files/file/${encodeURIComponent(file.filename || '')}`;
+    }
+
+    async function downloadFile(file: FileDoc, token: string, button: HTMLButtonElement) {
+      const original = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Preparing…';
+      try {
+        const res = await fetch(fileUrl(file), { headers: { Authorization: `JWT ${token}` } });
+        if (res.status === 401 || res.status === 403 || res.status === 404) {
+          throw new Error('You do not have access to this file, or your session has expired. Please sign in again.');
+        }
+        if (!res.ok) throw new Error('The file could not be downloaded. Please try again.');
+        const blob = await res.blob();
+        const link = document.createElement('a');
+        const objectUrl = URL.createObjectURL(blob);
+        link.href = objectUrl;
+        link.download = file.filename || 'download';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
+      } catch (err: any) {
+        showError(err?.message || 'The file could not be downloaded. Please try again.');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
       }
     }
 
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('amn_member_token');
-        localStorage.removeItem('amn_member_user');
-        window.location.href = '/login';
-      });
+    function buildCard(r: Resource, theme: keyof typeof THEMES, token: string): HTMLElement {
+      const t = THEMES[theme];
+      const file = fileDoc(r);
+
+      const card = document.createElement('div');
+      card.className = `bg-white p-6 rounded-xl border ${t.border} shadow-2xs hover:shadow-md transition-shadow flex flex-col`;
+
+      const icon = document.createElement('span');
+      icon.className = 'text-2xl mb-2 block';
+      icon.textContent = iconFor(file);
+
+      const title = document.createElement('h3');
+      title.className = 'font-bold text-slate-900 text-base';
+      title.textContent = r.title;
+
+      const desc = document.createElement('p');
+      desc.className = 'text-xs text-slate-600 mt-2 leading-relaxed flex-1';
+      desc.textContent = r.description || '';
+
+      const footer = document.createElement('div');
+      footer.className = 'mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs gap-3';
+
+      const meta = document.createElement('span');
+      meta.className = 'text-slate-400 font-mono';
+      const ext = (file?.filename || '').split('.').pop()?.toUpperCase();
+      const parts = [ext, formatSize(file?.filesize)].filter(Boolean);
+      if (r.publishedDate) {
+        const d = new Date(r.publishedDate);
+        if (!isNaN(d.getTime())) parts.push(d.toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' }));
+      }
+      meta.textContent = parts.join(' • ') || (r.category ? CATEGORY_LABELS[r.category] || '' : '');
+
+      footer.appendChild(meta);
+
+      if (file) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `font-bold ${t.link} cursor-pointer disabled:opacity-60`;
+        btn.textContent = 'Download ↓';
+        btn.addEventListener('click', () => downloadFile(file, token, btn));
+        footer.appendChild(btn);
+      }
+
+      card.append(icon, title, desc, footer);
+      return card;
     }
+
+    function renderSection(items: Resource[], theme: keyof typeof THEMES, token: string) {
+      const grid = $(`${theme}-grid`);
+      if (!grid) return false;
+      grid.replaceChildren(...items.map((r) => buildCard(r, theme, token)));
+      if (items.length) show(`${theme}-section`);
+      return items.length > 0;
+    }
+
+    async function init() {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (!token) {
+        showAuthRequired();
+        return;
+      }
+
+      // 1. Ask the CMS who this is (the saved user details are never trusted).
+      let me: any = null;
+      try {
+        const res = await fetch(`${CMS}/api/users/me`, { headers: { Authorization: `JWT ${token}` } });
+        me = res.ok ? (await res.json()).user : null;
+      } catch {
+        show('member-content');
+        showError('The member service could not be reached. Please check your connection and reload the page.');
+        return;
+      }
+      if (!me) {
+        clearSession();
+        showAuthRequired('Your session has expired. Please sign in again.');
+        return;
+      }
+
+      show('member-content');
+      show('logout-btn');
+      setText('welcome-title', `Welcome back, ${me.fullName || me.email}`);
+      setText('user-info-bar', `Signed in as ${me.email} (${String(me.role || 'member').toUpperCase()})`);
+      if (me.status === 'suspended') {
+        showError('Your membership is currently suspended, so only public resources are shown. Please contact the Network.');
+      }
+
+      // 2. The CMS returns only the resources this member is allowed to see.
+      let docs: Resource[] = [];
+      try {
+        const res = await fetch(`${CMS}/api/resources?depth=1&limit=200&sort=-publishedDate`, {
+          headers: { Authorization: `JWT ${token}` },
+        });
+        if (res.status === 401) {
+          clearSession();
+          hide('member-content');
+          showAuthRequired('Your session has expired. Please sign in again.');
+          return;
+        }
+        if (!res.ok) throw new Error('bad status');
+        docs = (await res.json()).docs || [];
+      } catch {
+        showError('Your resources could not be loaded. Please reload the page or try again shortly.');
+        return;
+      }
+
+      const mentor = renderSection(docs.filter((d) => d.accessLevel === 'mentor'), 'mentor', token);
+      const mentee = renderSection(docs.filter((d) => d.accessLevel === 'mentee'), 'mentee', token);
+      const pub = renderSection(docs.filter((d) => d.accessLevel === 'public'), 'public', token);
+      if (!mentor && !mentee && !pub) show('empty-state');
+    }
+
+    $('logout-btn')?.addEventListener('click', () => {
+      clearSession();
+      window.location.href = '/login';
+    });
+
+    init();
   </script>
 </Layout>
