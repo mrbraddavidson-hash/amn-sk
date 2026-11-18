@@ -204,7 +204,7 @@ import Layout from '../layouts/Layout.astro';
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'X-Turnstile-Token': turnstileToken,
+              'Authorization': `Turnstile ${turnstileToken}`,
             },
             body: JSON.stringify(payload),
           });
