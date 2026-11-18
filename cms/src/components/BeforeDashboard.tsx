@@ -74,7 +74,7 @@ export const BeforeDashboard: React.FC = () => {
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
                   borderRadius: '9999px',
-                  background: '#0284c7',
+                  background: '#1f5c45',
                   color: '#ffffff',
                 }}
               >
@@ -83,7 +83,7 @@ export const BeforeDashboard: React.FC = () => {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    background: '#a7f3d0',
+                    background: '#a9c9b3',
                   }}
                 />
                 Cohort 2026/2027 Active
@@ -119,10 +119,10 @@ export const BeforeDashboard: React.FC = () => {
                 fontSize: '0.92rem',
                 fontWeight: 700,
                 borderRadius: '9px',
-                background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
+                background: 'linear-gradient(135deg, #1f5767 0%, #194553 100%)',
                 color: '#ffffff',
                 textDecoration: 'none',
-                boxShadow: '0 3px 10px rgba(13, 148, 136, 0.35)',
+                boxShadow: '0 3px 10px rgba(31, 87, 103, 0.35)',
               }}
             >
               <span>📦 Export Complete Backup (.ZIP)</span>
@@ -203,7 +203,7 @@ export const BeforeDashboard: React.FC = () => {
               padding: '0.5rem 1rem',
               borderRadius: '9px',
               background: 'var(--theme-elevation-100)',
-              border: '1px solid #eab308',
+              border: '1px solid #d9a22e',
               fontSize: '0.92rem',
               fontWeight: 800,
               color: 'var(--theme-text)',
@@ -221,7 +221,7 @@ export const BeforeDashboard: React.FC = () => {
               padding: '0.5rem 1rem',
               borderRadius: '9px',
               background: 'var(--theme-elevation-100)',
-              border: '1px solid #0d9488',
+              border: '1px solid #1f5767',
               fontSize: '0.92rem',
               fontWeight: 800,
               color: 'var(--theme-text)',
@@ -239,7 +239,7 @@ export const BeforeDashboard: React.FC = () => {
               padding: '0.5rem 1rem',
               borderRadius: '9px',
               background: 'var(--theme-elevation-100)',
-              border: '1px solid #6366f1',
+              border: '1px solid #7c560e',
               fontSize: '0.92rem',
               fontWeight: 800,
               color: 'var(--theme-text)',
@@ -257,7 +257,7 @@ export const BeforeDashboard: React.FC = () => {
               padding: '0.5rem 1rem',
               borderRadius: '9px',
               background: 'var(--theme-elevation-100)',
-              border: '1px solid #0284c7',
+              border: '1px solid #1f5c45',
               fontSize: '0.92rem',
               fontWeight: 800,
               color: 'var(--theme-text)',
@@ -349,7 +349,7 @@ export const BeforeDashboard: React.FC = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '2.1rem' }}>📋</span>
-                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#fef08a', color: '#854d0e' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#f8e8be', color: '#5c400c' }}>
                   {counts.applications} Submissions Awaiting
                 </span>
               </div>
@@ -371,12 +371,12 @@ export const BeforeDashboard: React.FC = () => {
                   gap: '0.45rem',
                   padding: '0.8rem 1.25rem',
                   borderRadius: '9px',
-                  background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+                  background: 'linear-gradient(135deg, #1f5c45 0%, #184a38 100%)',
                   color: '#ffffff',
                   fontSize: '0.92rem',
                   fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 8px rgba(2, 132, 199, 0.3)',
+                  boxShadow: '0 2px 8px rgba(31, 92, 69, 0.3)',
                 }}
               >
                 <span>Review Applications</span>
@@ -401,7 +401,7 @@ export const BeforeDashboard: React.FC = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '2.1rem' }}>🩺</span>
-                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#ccfbf1', color: '#115e59' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#d9ecf0', color: '#115e59' }}>
                   {counts.users} Active Users
                 </span>
               </div>
@@ -423,12 +423,12 @@ export const BeforeDashboard: React.FC = () => {
                   gap: '0.45rem',
                   padding: '0.8rem 1.25rem',
                   borderRadius: '9px',
-                  background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
+                  background: 'linear-gradient(135deg, #1f5767 0%, #194553 100%)',
                   color: '#ffffff',
                   fontSize: '0.92rem',
                   fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 8px rgba(13, 148, 136, 0.3)',
+                  boxShadow: '0 2px 8px rgba(31, 87, 103, 0.3)',
                 }}
               >
                 <span>View Directory</span>
@@ -471,7 +471,7 @@ export const BeforeDashboard: React.FC = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '2.1rem' }}>🔒</span>
-                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#e0e7ff', color: '#3730a3' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: 800, padding: '0.3rem 0.75rem', borderRadius: '8px', background: '#f8e8be', color: '#3730a3' }}>
                   {counts.resources} Documents
                 </span>
               </div>
@@ -493,12 +493,12 @@ export const BeforeDashboard: React.FC = () => {
                   gap: '0.45rem',
                   padding: '0.8rem 1.25rem',
                   borderRadius: '9px',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                  background: 'linear-gradient(135deg, #7c560e 0%, #5c400c 100%)',
                   color: '#ffffff',
                   fontSize: '0.92rem',
                   fontWeight: 700,
                   textDecoration: 'none',
-                  boxShadow: '0 2px 8px rgba(99, 102, 241, 0.3)',
+                  boxShadow: '0 2px 8px rgba(217, 162, 46, 0.3)',
                 }}
               >
                 <span>Manage Toolkits</span>
@@ -591,7 +591,7 @@ export const BeforeDashboard: React.FC = () => {
                 style={{
                   padding: '0.7rem 1.15rem',
                   borderRadius: '8px',
-                  background: '#0284c7',
+                  background: '#1f5c45',
                   color: '#ffffff',
                   fontSize: '0.88rem',
                   fontWeight: 700,
@@ -649,7 +649,7 @@ export const BeforeDashboard: React.FC = () => {
                 style={{
                   padding: '0.7rem 1.15rem',
                   borderRadius: '8px',
-                  background: '#0284c7',
+                  background: '#1f5c45',
                   color: '#ffffff',
                   fontSize: '0.88rem',
                   fontWeight: 700,
@@ -707,7 +707,7 @@ export const BeforeDashboard: React.FC = () => {
                 style={{
                   padding: '0.7rem 1.15rem',
                   borderRadius: '8px',
-                  background: '#0284c7',
+                  background: '#1f5c45',
                   color: '#ffffff',
                   fontSize: '0.88rem',
                   fontWeight: 700,
@@ -765,7 +765,7 @@ export const BeforeDashboard: React.FC = () => {
                 style={{
                   padding: '0.7rem 1.15rem',
                   borderRadius: '8px',
-                  background: '#0284c7',
+                  background: '#1f5c45',
                   color: '#ffffff',
                   fontSize: '0.88rem',
                   fontWeight: 700,

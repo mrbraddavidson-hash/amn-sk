@@ -7,14 +7,14 @@
 @layer payload {
   :root {
     /* Healthcare Design Tokens */
-    --brand-primary: #0284c7;
-    --brand-primary-hover: #0369a1;
-    --brand-teal: #0d9488;
-    --brand-teal-hover: #0f766e;
-    --brand-spruce: #047857;
-    --brand-glow: rgba(2, 132, 199, 0.22);
-    --clinical-border: rgba(2, 132, 199, 0.25);
-    --clinical-ice: #f0fdfa;
+    --brand-primary: #1f5c45;
+    --brand-primary-hover: #184a38;
+    --brand-teal: #1f5767;
+    --brand-teal-hover: #194553;
+    --brand-spruce: #1f5c45;
+    --brand-glow: rgba(31, 92, 69, 0.22);
+    --clinical-border: rgba(31, 92, 69, 0.25);
+    --clinical-ice: #faf6ec;
     --style-radius-s: 6px;
     --style-radius-m: 10px;
     --style-radius-l: 14px;
@@ -54,7 +54,7 @@
     font-weight: 800 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.08em !important;
-    color: #0369a1 !important;
+    color: #184a38 !important;
     padding: 0.6rem 0.9rem !important;
     margin-bottom: 0.35rem !important;
     display: flex !important;
@@ -64,7 +64,7 @@
 
   [data-theme="dark"] .nav-group__toggle,
   [data-theme="dark"] .nav-group__label {
-    color: #38bdf8 !important;
+    color: #f2d48a !important;
   }
 
   a.nav__link {
@@ -78,13 +78,13 @@
   }
 
   a.nav__link:hover {
-    background-color: rgba(2, 132, 199, 0.12) !important;
+    background-color: rgba(31, 92, 69, 0.12) !important;
     color: var(--brand-primary) !important;
     transform: translateX(3px) !important;
   }
 
   a.nav__link--active {
-    background: rgba(2, 132, 199, 0.16) !important;
+    background: rgba(31, 92, 69, 0.16) !important;
     color: var(--brand-primary) !important;
     font-weight: 700 !important;
     border-left: 3px solid var(--brand-primary) !important;
@@ -125,15 +125,15 @@
     align-items: center !important;
     gap: 0.4rem !important;
     padding: 0.35rem 0.85rem !important;
-    background: rgba(2, 132, 199, 0.12) !important;
-    border: 1px solid rgba(2, 132, 199, 0.35) !important;
+    background: rgba(31, 92, 69, 0.12) !important;
+    border: 1px solid rgba(31, 92, 69, 0.35) !important;
     border-radius: 8px !important;
     text-decoration: none !important;
     transition: all 0.15s ease !important;
   }
 
   .step-nav__home:hover {
-    background: rgba(2, 132, 199, 0.22) !important;
+    background: rgba(31, 92, 69, 0.22) !important;
     border-color: var(--brand-primary) !important;
     transform: translateY(-1px) !important;
   }
@@ -155,7 +155,7 @@
   }
 
   [data-theme="dark"] .step-nav__home::after {
-    color: #38bdf8 !important;
+    color: #f2d48a !important;
   }
 
   .graphic-icon {
@@ -184,7 +184,7 @@
   }
 
   table.table tbody tr:hover {
-    background-color: rgba(2, 132, 199, 0.06) !important;
+    background-color: rgba(31, 92, 69, 0.06) !important;
   }
 
   table.table tbody td {
