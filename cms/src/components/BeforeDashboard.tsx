@@ -89,7 +89,7 @@ export const BeforeDashboard: React.FC = () => {
                 Cohort 2026/2027 Active
               </span>
               <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--theme-text)' }}>
-                🏥 Saskatchewan Health Authority Clinical Partner · AMN-SK
+                Saskatchewan Mentorship & Clinical Resources · AMN-SK
               </span>
             </div>
             <h1
@@ -264,7 +264,7 @@ export const BeforeDashboard: React.FC = () => {
             }}
           >
             <span>🍁</span>
-            <span>Canadian Storage (AWS Montreal / Neon Central)</span>
+            <span>Data stored in Canada (Supabase, Canada Central)</span>
           </div>
         </div>
       </div>
@@ -479,7 +479,7 @@ export const BeforeDashboard: React.FC = () => {
                 Clinical Toolkits (Vault)
               </h3>
               <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.95rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.6 }}>
-                Upload confidential PDFs and orientation roadmaps. Served exclusively to verified Mentors or Mentees through authorized Cloudflare R2 streaming.
+                Upload confidential PDFs and orientation roadmaps. Files are stored in Canada. Only signed-in members with the right role can download them.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.65rem' }}>
@@ -739,7 +739,7 @@ export const BeforeDashboard: React.FC = () => {
                 </h3>
               </div>
               <p style={{ margin: '0 0 1.25rem 0', fontSize: '0.92rem', color: 'var(--theme-text)', opacity: 0.85, lineHeight: 1.55 }}>
-                Cloud-stored photos, brand logos, PDF checklists, and attachments hosted on Vercel Blob / Cloudflare R2.
+                Cloud-stored photos, brand logos, PDF checklists, and attachments stored in Canada (Supabase Storage).
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.65rem' }}>
