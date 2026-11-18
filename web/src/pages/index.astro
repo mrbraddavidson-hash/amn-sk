@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PrairieScene from '../components/PrairieScene.astro';
 import { getQuotes, getFAQs, getNews, getEvents } from '../lib/cms';
 
 const quotes = await getQuotes();
@@ -12,8 +11,9 @@ const events = await getEvents();
 <Layout title="Mentor Network (AMN-SK) — Supporting Saskatchewan Clinical Leaders">
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-b from-sky-900 via-sky-800 to-slate-900 text-white overflow-hidden py-20 lg:py-28">
+    <img src="/images/clinic-lobby.webp" alt="" width="1376" height="768" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-r from-sky-950/95 via-sky-900/85 to-sky-900/50"></div>
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-    <PrairieScene class="absolute bottom-0 left-0 w-full h-24 md:h-32 pointer-events-none" />
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-700/60 border border-sky-500/30 text-sky-200 text-xs font-medium mb-6">
