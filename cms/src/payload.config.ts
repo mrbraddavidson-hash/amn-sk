@@ -1,6 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { resendAdapter } from '@payloadcms/email-resend'
+import { cloudflareEmailAdapter } from './lib/cloudflareEmail'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 import path from 'path'
@@ -109,12 +109,15 @@ export default buildConfig({
     ResourceFiles,
   ],
   editor: lexicalEditor(),
-  ...(process.env.RESEND_API_KEY
+  // Transactional email through Cloudflare Email Sending (Worker binding "EMAIL"). The sender address
+  // must be on a domain onboarded to Email Sending. Locally (no binding) Payload logs emails instead.
+  ...(bindings?.EMAIL
     ? {
-        email: resendAdapter({
-          defaultFromAddress: process.env.EMAIL_FROM || 'onboarding@resend.dev',
+        email: cloudflareEmailAdapter({
+          binding: bindings.EMAIL,
+          defaultFromAddress: process.env.EMAIL_FROM || 'noreply@mail.davidsondigitaldesign.com',
           defaultFromName: 'Mentor Network (AMN-SK)',
-          apiKey: process.env.RESEND_API_KEY,
+          replyTo: process.env.EMAIL_REPLY_TO || undefined,
         }),
       }
     : {}),

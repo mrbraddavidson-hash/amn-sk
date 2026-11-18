@@ -18,7 +18,16 @@
       "localConnectionString": "postgresql://postgres:postgres@localhost:5432/payload"
     }
   ],
+  // Cloudflare Email Sending. The sender domain (a subdomain of davidsondigitaldesign.com for now)
+  // must be onboarded: `wrangler email sending enable <domain>`.
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["noreply@mail.davidsondigitaldesign.com"]
+    }
+  ],
   "vars": {
+    "EMAIL_FROM": "noreply@mail.davidsondigitaldesign.com",
     "S3_BUCKET": "media",
     "S3_RESOURCE_BUCKET": "resource-files",
     "S3_REGION": "ca-central-1",

@@ -192,7 +192,6 @@ export interface Resource {
  */
 export interface ResourceFile {
   id: number;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -275,7 +274,6 @@ export interface News {
 export interface Media {
   id: number;
   alt: string;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -598,7 +596,6 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -616,7 +613,6 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "resource-files_select".
  */
 export interface ResourceFilesSelect<T extends boolean = true> {
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

@@ -1,5 +1,13 @@
 import type { CollectionConfig } from 'payload'
 import { isAdmin } from '../access'
+import {
+  adminNewApplicationEmail,
+  applicationReceivedEmail,
+  welcomeSetPasswordEmail,
+} from '../lib/emailTemplates'
+
+// Public form: cap how many applications can trigger emails in one hour.
+const MAX_EMAILED_PER_HOUR = 20
 
 export const MembershipRequests: CollectionConfig = {
   slug: 'membership-requests',
@@ -20,26 +28,80 @@ export const MembershipRequests: CollectionConfig = {
     delete: isAdmin,
   },
   hooks: {
+    // The form is public, so a visitor must not be able to pre-set review fields.
+    beforeValidate: [
+      ({ data, operation, req }) => {
+        if (operation === 'create' && !req.user && data) {
+          data.status = 'pending'
+          delete data.adminNotes
+        }
+        return data
+      },
+    ],
     afterChange: [
       async ({ doc, previousDoc, operation, req }) => {
         const { payload } = req
         const siteUrl = process.env.FRONTEND_URL || 'https://amn-sk.pages.dev'
-        const cmsUrl =
-          process.env.NEXT_PUBLIC_SERVER_URL ||
-          (process.env.VERCEL_PROJECT_PRODUCTION_URL
-            ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-            : 'http://localhost:3001')
+        const cmsUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'
 
-        // Confirmation email to the applicant on new submission
         if (operation === 'create') {
+          // Abuse guard: this form is public and each submission emails the address typed into it.
+          // Send at most one set of emails per address per 24 hours, and cap the total per hour.
+          const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          const hourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString()
+          const [sameAddress, lastHour] = await Promise.all([
+            payload.count({
+              collection: 'membership-requests',
+              where: {
+                and: [
+                  { email: { equals: doc.email } },
+                  { createdAt: { greater_than: dayAgo } },
+                  { id: { not_equals: doc.id } },
+                ],
+              },
+              overrideAccess: true,
+              req,
+            }),
+            payload.count({
+              collection: 'membership-requests',
+              where: { createdAt: { greater_than: hourAgo } },
+              overrideAccess: true,
+              req,
+            }),
+          ])
+          if (sameAddress.totalDocs > 0 || lastHour.totalDocs > MAX_EMAILED_PER_HOUR) {
+            payload.logger.warn(
+              `Skipped emails for application ${doc.id}: repeat address or hourly limit reached`,
+            )
+            return doc
+          }
+
+          // Confirmation to the applicant
           try {
-            await payload.sendEmail({
-              to: doc.email,
-              subject: 'We received your Mentor Network application',
-              html: `<p>Hello ${doc.fullName},</p><p>Thank you for applying to the Mentor Network (AMN-SK). Our team will review your application and be in touch.</p>`,
-            })
+            const mail = applicationReceivedEmail({ fullName: doc.fullName, requestedRole: doc.requestedRole })
+            await payload.sendEmail({ to: doc.email, subject: mail.subject, html: mail.html })
           } catch (err) {
             payload.logger.error({ err }, 'Failed to send application confirmation email')
+          }
+
+          // Heads-up to the Network's reviewers (addresses are kept in the ADMIN_NOTIFY_EMAIL secret)
+          const reviewers = (process.env.ADMIN_NOTIFY_EMAIL || '')
+            .split(',')
+            .map((e) => e.trim())
+            .filter(Boolean)
+          if (reviewers.length) {
+            try {
+              const mail = adminNewApplicationEmail({
+                fullName: doc.fullName,
+                email: doc.email,
+                requestedRole: doc.requestedRole,
+                organization: doc.organization,
+                adminUrl: `${cmsUrl}/admin/collections/membership-requests/${doc.id}`,
+              })
+              await payload.sendEmail({ to: reviewers, subject: mail.subject, html: mail.html })
+            } catch (err) {
+              payload.logger.error({ err }, 'Failed to send new-application notice to reviewers')
+            }
           }
           return doc
         }
@@ -73,18 +135,21 @@ export const MembershipRequests: CollectionConfig = {
             req,
           })
 
+          // 7 days: a new member may not open the email straight away (the default is 1 hour).
           const token = await payload.forgotPassword({
             collection: 'users',
             data: { email: doc.email },
             disableEmail: true,
+            expiration: 7 * 24 * 60 * 60 * 1000,
             req,
           })
 
-          await payload.sendEmail({
-            to: doc.email,
-            subject: 'Welcome to the Mentor Network — set your password',
-            html: `<p>Hello ${doc.fullName},</p><p>Your application has been approved. Set your password here:</p><p><a href="${siteUrl}/reset-password?token=${token}">Set my password</a></p><p>Then sign in at <a href="${siteUrl}/login">${siteUrl}/login</a>.</p>`,
+          const mail = welcomeSetPasswordEmail({
+            fullName: doc.fullName,
+            setPasswordUrl: `${siteUrl}/reset-password?token=${token}`,
+            loginUrl: `${siteUrl}/login`,
           })
+          await payload.sendEmail({ to: doc.email, subject: mail.subject, html: mail.html })
         } catch (err) {
           payload.logger.error({ err }, 'Failed to provision approved member')
         }
