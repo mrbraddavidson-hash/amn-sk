@@ -31,6 +31,13 @@ function parseAddress(input: unknown): Recipient | null {
   return s ? { email: s } : null
 }
 
+// Cloudflare's binding rejects an address object that has no `name` ("Incorrect type for the 'name'
+// field on 'EmailAddress'"), even though the typings mark it optional. So: a plain address string
+// when there is no display name, and { email, name } only when there is one.
+function forBinding(r: Recipient): string | { email: string; name: string } {
+  return r.name ? { email: r.email, name: r.name } : r.email
+}
+
 function toRecipients(input: unknown): Recipient[] {
   const items = Array.isArray(input) ? input : input ? [input] : []
   return items.flatMap((item) => {
@@ -81,12 +88,12 @@ export function cloudflareEmailAdapter(options: {
       const reply = parseAddress(message.replyTo) ?? (replyTo ? { email: replyTo } : undefined)
 
       return binding.send({
-        to,
-        from,
+        to: to.map(forBinding),
+        from: forBinding(from),
         subject: String(message.subject ?? '').replace(/[\r\n]+/g, ' '),
         ...(html ? { html } : {}),
         ...(text ? { text } : {}),
-        ...(reply ? { replyTo: reply } : {}),
+        ...(reply ? { replyTo: forBinding(reply) } : {}),
       })
     },
   })
