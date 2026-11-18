@@ -18,13 +18,10 @@
       "localConnectionString": "postgresql://postgres:postgres@localhost:5432/payload"
     }
   ],
-  "r2_buckets": [
-    {
-      "binding": "MEDIA_BUCKET",
-      "bucket_name": "amn-sk-media"
-    }
-  ],
   "vars": {
+    "S3_BUCKET": "media",
+    "S3_REGION": "ca-central-1",
+    "S3_ENDPOINT": "https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3",
     "NEXT_PUBLIC_SERVER_URL": "https://amn-sk-cms.mrbraddavidson.workers.dev",
     "CORS_ORIGINS": "https://amn-sk.pages.dev,http://localhost:4321"
   }

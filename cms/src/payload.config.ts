@@ -1,7 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
-import { r2Storage } from '@payloadcms/storage-r2'
+import { s3Storage } from '@payloadcms/storage-s3'
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -110,12 +110,23 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   plugins: [
-    r2Storage({
-      enabled: Boolean(bindings?.MEDIA_BUCKET),
-      // Only used when enabled; the cast covers local runs without the binding.
-      bucket: bindings?.MEDIA_BUCKET as any,
+    // Uploads live in a private Supabase Storage bucket in Canada (ca-central-1),
+    // reached through Supabase's S3-compatible endpoint.
+    s3Storage({
+      enabled: Boolean(process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY),
+      bucket: process.env.S3_BUCKET || 'media',
       collections: {
         media: true,
+      },
+      config: {
+        endpoint:
+          process.env.S3_ENDPOINT || 'https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3',
+        region: process.env.S3_REGION || 'ca-central-1',
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        },
       },
     }),
   ],
