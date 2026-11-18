@@ -1,0 +1,11 @@
+{
+  "name": "amn-sk-keepalive",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Daily keep-alive and weekly encrypted backup for the AMN-SK CMS database",
+  "type": "module",
+  "dependencies": {
+    "aws4fetch": "^1.0.20",
+    "pg": "^8.13.0"
+  }
+}

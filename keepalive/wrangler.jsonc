@@ -1,0 +1,24 @@
+{
+  "$schema": "../cms/node_modules/wrangler/config-schema.json",
+  "name": "amn-sk-keepalive",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "observability": { "enabled": true },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "639265817d2f4627ab49f8ffaae087f7",
+      "localConnectionString": "postgresql://postgres:postgres@localhost:5432/postgres"
+    }
+  ],
+  "vars": {
+    "S3_ENDPOINT": "https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3",
+    "S3_REGION": "ca-central-1",
+    "BACKUP_BUCKET": "backups"
+  },
+  // Daily 09:17 UTC: keep the free Supabase database from pausing.
+  // Sundays 09:30 UTC: encrypted backup into the private "backups" bucket (Canada).
+  "triggers": { "crons": ["17 9 * * *", "30 9 * * SUN"] }
+}
