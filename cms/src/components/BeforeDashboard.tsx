@@ -17,6 +17,7 @@ type Application = {
 const PRIMARY = '#1f5c45'
 const SECONDARY = '#1f5767'
 const GOLD = '#7c560e'
+const LINK = '#f2d48a' // light wheat gold: readable on the dark admin background
 
 const card: React.CSSProperties = {
   background: 'var(--theme-elevation-50)',
@@ -203,8 +204,8 @@ export const BeforeDashboard: React.FC = () => {
             <div key={item.label} style={{ border: '1px solid var(--theme-elevation-150)', borderRadius: '10px', padding: '0.85rem 1rem' }}>
               <div style={{ fontWeight: 600, color: 'var(--theme-text)', marginBottom: '0.5rem' }}>{item.label}</div>
               <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem' }}>
-                <a href={item.href} style={{ color: SECONDARY, fontWeight: 600 }}>Manage</a>
-                {item.add && <a href={item.add} style={{ color: SECONDARY, fontWeight: 600 }}>Add new</a>}
+                <a href={item.href} style={{ color: LINK, fontWeight: 600 }}>Manage</a>
+                {item.add && <a href={item.add} style={{ color: LINK, fontWeight: 600 }}>Add new</a>}
               </div>
             </div>
           ))}
