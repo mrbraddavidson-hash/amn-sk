@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { ResourceFiles } from './collections/ResourceFiles'
 import { Resources } from './collections/Resources'
 import { MembershipRequests } from './collections/MembershipRequests'
 import { News } from './collections/News'
@@ -35,6 +36,17 @@ async function getBindings() {
 const bindings = await getBindings()
 
 const databaseUrl = bindings?.HYPERDRIVE?.connectionString || process.env.DATABASE_URI || ''
+
+const s3Enabled = Boolean(process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY)
+const s3Config = {
+  endpoint: process.env.S3_ENDPOINT || 'https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3',
+  region: process.env.S3_REGION || 'ca-central-1',
+  forcePathStyle: true,
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+  },
+}
 
 export default buildConfig({
   serverURL:
@@ -94,6 +106,7 @@ export default buildConfig({
     Quotes,
     FAQs,
     Media,
+    ResourceFiles,
   ],
   editor: lexicalEditor(),
   ...(process.env.RESEND_API_KEY
@@ -105,29 +118,28 @@ export default buildConfig({
         }),
       }
     : {}),
-  secret: process.env.PAYLOAD_SECRET || 'amn_sk_fallback_secret_key_12345',
+  // No hardcoded fallback: this repo is public, so a default here would let anyone forge logins.
+  // Payload refuses to start without a secret. Local runs: set PAYLOAD_SECRET in cms/.env.
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   plugins: [
-    // Uploads live in a private Supabase Storage bucket in Canada (ca-central-1),
-    // reached through Supabase's S3-compatible endpoint.
+    // Uploads live in private Supabase Storage buckets in Canada (ca-central-1),
+    // reached through Supabase's S3-compatible endpoint, and are always served through the CMS.
+    // Public website images:
     s3Storage({
-      enabled: Boolean(process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY),
+      enabled: s3Enabled,
       bucket: process.env.S3_BUCKET || 'media',
-      collections: {
-        media: true,
-      },
-      config: {
-        endpoint:
-          process.env.S3_ENDPOINT || 'https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3',
-        region: process.env.S3_REGION || 'ca-central-1',
-        forcePathStyle: true,
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-        },
-      },
+      collections: { media: true },
+      config: s3Config,
+    }),
+    // Files for restricted resources: separate bucket, access decided by the resource's access level.
+    s3Storage({
+      enabled: s3Enabled,
+      bucket: process.env.S3_RESOURCE_BUCKET || 'resource-files',
+      collections: { 'resource-files': true },
+      config: s3Config,
     }),
   ],
   db: postgresAdapter({

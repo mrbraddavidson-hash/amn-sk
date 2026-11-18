@@ -20,6 +20,7 @@
   ],
   "vars": {
     "S3_BUCKET": "media",
+    "S3_RESOURCE_BUCKET": "resource-files",
     "S3_REGION": "ca-central-1",
     "S3_ENDPOINT": "https://gnoubqtrwlnsfeolpari.storage.supabase.co/storage/v1/s3",
     "NEXT_PUBLIC_SERVER_URL": "https://amn-sk-cms.mrbraddavidson.workers.dev",

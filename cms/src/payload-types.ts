@@ -76,6 +76,7 @@ export interface Config {
     quotes: Quote;
     faqs: Faq;
     media: Media;
+    'resource-files': ResourceFile;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     quotes: QuotesSelect<false> | QuotesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'resource-files': ResourceFilesSelect<false> | ResourceFilesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -177,18 +179,19 @@ export interface Resource {
    * Determines whether this resource requires member login and role authorization to view and download.
    */
   accessLevel: 'public' | 'mentor' | 'mentee';
-  file: number | Media;
+  file: number | ResourceFile;
   publishedDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Downloadable files for Resources. Who can download a file is decided by the Access Level of the resource it is attached to (public, mentor only, or mentee only).
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "resource-files".
  */
-export interface Media {
+export interface ResourceFile {
   id: number;
-  alt: string;
   _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -264,6 +267,26 @@ export interface News {
   } | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  _objectKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -396,6 +419,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'resource-files';
+        value: number | ResourceFile;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -571,6 +598,24 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  _objectKey?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resource-files_select".
+ */
+export interface ResourceFilesSelect<T extends boolean = true> {
   _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;

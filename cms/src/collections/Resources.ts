@@ -1,7 +1,7 @@
 import type { Access, CollectionConfig, Where } from 'payload'
 import { isAdmin } from '../access'
 
-const canReadResources: Access = ({ req: { user } }) => {
+export const canReadResources: Access = ({ req: { user } }) => {
   if (user && user.role === 'admin') return true
 
   if (user && user.role === 'mentor') {
@@ -84,7 +84,8 @@ export const Resources: CollectionConfig = {
     {
       name: 'file',
       type: 'upload',
-      relationTo: 'media',
+      // Private storage: served only to users allowed to read this resource.
+      relationTo: 'resource-files',
       required: true,
     },
     {
