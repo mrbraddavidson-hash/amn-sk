@@ -1,5 +1,4 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { requireAdmin } from '../../../lib/requireAdmin'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,19 +8,20 @@ function escapeCsv(val: any): string {
   return `"${str.replace(/"/g, '""')}"`
 }
 
-export const GET = async (_request: Request) => {
+export const GET = async (request: Request) => {
   try {
-    const payload = await getPayload({ config: configPromise })
+    const { payload, denied } = await requireAdmin(request)
+    if (denied) return denied
     const data = await payload.find({ collection: 'events', limit: 1000, depth: 0 })
-    const headers = ['ID', 'Title', 'Date', 'Time', 'Location', 'Is Virtual', 'Zoom Registration URL', 'Description']
+    const headers = ['ID', 'Title', 'Starts', 'Ends', 'Location Type', 'Location Details', 'Registration URL', 'Description']
     const rows = data.docs.map((d: any) => [
       d.id,
       escapeCsv(d.title),
-      escapeCsv(d.date),
-      escapeCsv(d.time),
-      escapeCsv(d.location),
-      escapeCsv(d.isVirtual ? 'Yes' : 'No'),
-      escapeCsv(d.zoomRegistrationUrl),
+      escapeCsv(d.eventDate),
+      escapeCsv(d.endDate),
+      escapeCsv(d.locationType),
+      escapeCsv(d.locationDetails),
+      escapeCsv(d.registrationUrl),
       escapeCsv(d.description),
     ].join(','))
 

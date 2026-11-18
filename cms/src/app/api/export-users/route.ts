@@ -1,13 +1,11 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { requireAdmin } from '../../../lib/requireAdmin'
 
 export const dynamic = 'force-dynamic'
 
-export const GET = async (_request: Request) => {
+export const GET = async (request: Request) => {
   try {
-    const payload = await getPayload({
-      config: configPromise,
-    })
+    const { payload, denied } = await requireAdmin(request)
+    if (denied) return denied
 
     const data = await payload.find({
       collection: 'users',

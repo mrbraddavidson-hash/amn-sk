@@ -1,5 +1,4 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { requireAdmin } from '../../../lib/requireAdmin'
 import JSZip from 'jszip'
 
 export const dynamic = 'force-dynamic'
@@ -10,11 +9,10 @@ function escapeCsv(val: any): string {
   return `"${str.replace(/"/g, '""')}"`
 }
 
-export const GET = async (_request: Request) => {
+export const GET = async (request: Request) => {
   try {
-    const payload = await getPayload({
-      config: configPromise,
-    })
+    const { payload, denied } = await requireAdmin(request)
+    if (denied) return denied
 
     const zip = new JSZip()
     const now = new Date()
@@ -74,25 +72,24 @@ export const GET = async (_request: Request) => {
     zip.file('03_clinical_toolkits.csv', [resHeaders.join(','), ...resRows].join('\r\n'))
 
     // --- CSV 4: CME Events & Workshops ---
-    const eventHeaders = ['ID', 'Title', 'Date', 'Time', 'Location', 'Is Virtual', 'Zoom Registration URL', 'Description']
+    const eventHeaders = ['ID', 'Title', 'Starts', 'Ends', 'Location Type', 'Location Details', 'Registration URL', 'Description']
     const eventRows = events.docs.map((d: any) => [
       d.id,
       escapeCsv(d.title),
-      escapeCsv(d.date),
-      escapeCsv(d.time),
-      escapeCsv(d.location),
-      escapeCsv(d.isVirtual ? 'Yes' : 'No'),
-      escapeCsv(d.zoomRegistrationUrl),
+      escapeCsv(d.eventDate),
+      escapeCsv(d.endDate),
+      escapeCsv(d.locationType),
+      escapeCsv(d.locationDetails),
+      escapeCsv(d.registrationUrl),
       escapeCsv(d.description),
     ].join(','))
     zip.file('04_cme_workshops_and_events.csv', [eventHeaders.join(','), ...eventRows].join('\r\n'))
 
     // --- CSV 5: News Bulletins ---
-    const newsHeaders = ['ID', 'Title', 'Category', 'Published Date', 'Excerpt', 'Is Featured']
+    const newsHeaders = ['ID', 'Title', 'Published Date', 'Excerpt', 'Is Featured']
     const newsRows = news.docs.map((d: any) => [
       d.id,
       escapeCsv(d.title),
-      escapeCsv(d.category),
       escapeCsv(d.publishedDate),
       escapeCsv(d.excerpt),
       escapeCsv(d.isFeatured ? 'Yes' : 'No'),
@@ -100,14 +97,13 @@ export const GET = async (_request: Request) => {
     zip.file('05_news_bulletins.csv', [newsHeaders.join(','), ...newsRows].join('\r\n'))
 
     // --- CSV 6: Leadership Team ---
-    const teamHeaders = ['ID', 'Name', 'Role / Title', 'Committee', 'Credentials', 'Bio']
+    const teamHeaders = ['ID', 'Name', 'Role / Title', 'Bio', 'Display Order']
     const teamRows = team.docs.map((d: any) => [
       d.id,
       escapeCsv(d.name),
-      escapeCsv(d.role),
-      escapeCsv(d.committee),
-      escapeCsv(d.credentials),
+      escapeCsv(d.roleTitle),
       escapeCsv(d.bio),
+      escapeCsv(d.displayOrder),
     ].join(','))
     zip.file('06_leadership_and_committee.csv', [teamHeaders.join(','), ...teamRows].join('\r\n'))
 
@@ -116,7 +112,7 @@ export const GET = async (_request: Request) => {
       exportedAt: now.toISOString(),
       network: 'Mentor Network (AMN-SK)',
       preparedFor: 'Dr. Melissa Holowaty, PhD, MD & Steering Committee',
-      dataSovereignty: 'AWS Canada Central (Montreal, ca-central-1) · Neon PostgreSQL',
+      dataSovereignty: 'Supabase PostgreSQL and Supabase Storage · Canada (Central), ca-central-1',
       collections: {
         membershipRequests: apps.docs,
         users: users.docs,
@@ -138,10 +134,10 @@ Export Date: ${now.toUTCString()}
 Client: Dr. Melissa Holowaty, PhD, MD & Steering Committee
 Prepared by: Brad Davidson, Davidson Digital Design
 
-CANADIAN DATA RESIDENCY VERIFICATION:
-- Primary Database: Neon Serverless PostgreSQL (AWS Canada Central)
-- Protected File Storage: Cloudflare R2 (Jurisdictional boundary: North America / Canada)
-- Compliance: Aligned with PIPEDA and Saskatchewan HIPA standards.
+WHERE THE DATA IS STORED:
+- Database: Supabase PostgreSQL, Canada (Central), ca-central-1
+- Uploaded files: Supabase Storage, Canada (Central), ca-central-1
+- Note: the website and CMS run on Cloudflare, so requests pass through the nearest Cloudflare data centre.
 
 ARCHIVE CONTENTS:
 - 01_physician_applications.csv      All prospective Mentor & Mentee submissions
@@ -150,7 +146,7 @@ ARCHIVE CONTENTS:
 - 04_cme_workshops_and_events.csv     Schedule, Zoom URLs, and event metadata
 - 05_news_bulletins.csv               Clinical news posts and announcements
 - 06_leadership_and_committee.csv     Leadership bios and committee profiles
-- master_database_dump.json           Complete raw JSON dump for automated restore
+- master_database_dump.json           Raw JSON of every record (password hashes are not included, so members would need to reset passwords)
 
 DATA OWNERSHIP & FREEDOM:
 AMN-SK owns all code, data, and database records outright with zero vendor lock-in.
