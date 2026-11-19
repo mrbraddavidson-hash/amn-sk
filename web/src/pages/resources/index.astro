@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getPublicResources } from '../../lib/cms';
+import { getPublicResources, mediaInfo } from '../../lib/cms';
 
 const providerResources = await getPublicResources('health-provider');
 const patientResources = await getPublicResources('patient');
@@ -40,6 +40,7 @@ const patientResources = await getPublicResources('patient');
           {providerResources.map((res) => (
             <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between">
               <div>
+                {mediaInfo(res.image) && <img src={mediaInfo(res.image)!.url} alt={mediaInfo(res.image)!.alt} class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" />}
                 <span class="text-xs text-slate-400 font-medium">{res.publishedDate}</span>
                 <h3 class="text-lg font-bold text-slate-900 mt-1">{res.title}</h3>
                 <p class="text-sm text-slate-600 mt-2 leading-relaxed">{res.description}</p>
@@ -75,6 +76,7 @@ const patientResources = await getPublicResources('patient');
           {patientResources.map((res) => (
             <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between">
               <div>
+                {mediaInfo(res.image) && <img src={mediaInfo(res.image)!.url} alt={mediaInfo(res.image)!.alt} class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" />}
                 <span class="text-xs text-slate-400 font-medium">{res.publishedDate}</span>
                 <h3 class="text-lg font-bold text-slate-900 mt-1">{res.title}</h3>
                 <p class="text-sm text-slate-600 mt-2 leading-relaxed">{res.description}</p>

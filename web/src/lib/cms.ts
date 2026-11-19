@@ -7,6 +7,7 @@ export interface ResourceItem {
   category: 'health-provider' | 'patient' | 'mentor' | 'mentee'
   accessLevel: 'public' | 'mentor' | 'mentee'
   publishedDate?: string
+  image?: MediaItem | number | null
   file?: {
     url: string
     filename: string
@@ -48,6 +49,7 @@ export interface EventItem {
   locationDetails?: string
   description: string
   registrationUrl?: string
+  image?: MediaItem | number | null
 }
 
 export interface TeamMemberItem {
@@ -65,6 +67,7 @@ export interface QuoteItem {
   author: string
   roleOrAffiliation: string
   isActive?: boolean
+  image?: MediaItem | number | null
 }
 
 export interface FAQItem {
@@ -73,6 +76,7 @@ export interface FAQItem {
   answer: string
   category: string
   displayOrder?: number
+  image?: MediaItem | number | null
 }
 
 // Fallback seed data so pages look rich and complete immediately
