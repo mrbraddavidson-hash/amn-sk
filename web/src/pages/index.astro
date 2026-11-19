@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getQuotes, getFAQs, getNews, getEvents } from '../lib/cms';
+import { getQuotes, getFAQs, getNews, getEvents, mediaInfo } from '../lib/cms';
 
 const quotes = await getQuotes();
 const faqs = await getFAQs();
@@ -200,6 +200,9 @@ const events = await getEvents();
           </h3>
           {news.slice(0, 2).map((item) => (
             <article class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-sky-300 transition-colors">
+              {mediaInfo(item.featuredImage) && (
+                <img src={mediaInfo(item.featuredImage)!.url} alt={mediaInfo(item.featuredImage)!.alt} class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" />
+              )}
               <div class="text-xs text-slate-500 font-medium mb-2">{item.publishedDate}</div>
               <h4 class="text-lg font-bold text-slate-900 hover:text-sky-700">
                 <a href={`/news`}>{item.title}</a>
