@@ -61,7 +61,40 @@ const secondaryButton: React.CSSProperties = {
   border: '1px solid var(--theme-elevation-300)',
 }
 
-const stat = (label: string, value: Count, href: string) => (
+const DAYS = 30
+const SPARK = '#6fa283' // prairie green, readable on light and dark admin
+
+// Count documents per day for the last 30 days (oldest first). Built from createdAt in the browser.
+function bucketByDay(docs: { createdAt?: string }[]): number[] {
+  const counts = new Array(DAYS).fill(0)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  for (const d of docs) {
+    if (!d.createdAt) continue
+    const day = new Date(d.createdAt)
+    day.setHours(0, 0, 0, 0)
+    const daysAgo = Math.round((today.getTime() - day.getTime()) / 86400000)
+    if (daysAgo >= 0 && daysAgo < DAYS) counts[DAYS - 1 - daysAgo]++
+  }
+  return counts
+}
+
+function Sparkline({ data }: { data?: number[] }) {
+  if (!data || data.length < 2) return null
+  const max = Math.max(1, ...data)
+  const w = 160
+  const h = 36
+  const points = data
+    .map((v, i) => `${(i / (data.length - 1)) * w},${h - (v / max) * (h - 4) - 2}`)
+    .join(' ')
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} width="100%" height={h} preserveAspectRatio="none" aria-hidden="true" style={{ display: 'block', marginTop: '0.6rem' }}>
+      <polyline points={points} fill="none" stroke={SPARK} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+    </svg>
+  )
+}
+
+const stat = (label: string, value: Count, href: string, trend?: number[]) => (
   <a
     href={href}
     style={{ ...card, borderTop: `4px solid ${PRIMARY}`, textDecoration: 'none', color: 'inherit', display: 'block', padding: '1rem 1.2rem' }}
@@ -70,6 +103,8 @@ const stat = (label: string, value: Count, href: string) => (
     <div style={{ fontSize: '1.9rem', fontWeight: 700, color: 'var(--theme-text)', lineHeight: 1.2, marginTop: '0.2rem' }}>
       {value === null ? '–' : value}
     </div>
+    <Sparkline data={trend} />
+    <div style={{ fontSize: '0.75rem', color: 'var(--theme-elevation-600)', marginTop: '0.2rem' }}>added · last 30 days</div>
   </a>
 )
 
@@ -81,6 +116,7 @@ export const BeforeDashboard: React.FC = () => {
   const [newsCount, setNewsCount] = useState<Count>(null)
   const [teamCount, setTeamCount] = useState<Count>(null)
   const [pending, setPending] = useState<Application[]>([])
+  const [trends, setTrends] = useState<Record<string, number[]>>({})
 
   useEffect(() => {
     const total = (url: string) =>
@@ -95,6 +131,17 @@ export const BeforeDashboard: React.FC = () => {
     total('/api/events?limit=1').then(setEventCount)
     total('/api/news?limit=1').then(setNewsCount)
     total('/api/team-members?limit=1').then(setTeamCount)
+
+    // 30-day trend per collection: fetch documents created in the window and count them per day.
+    const since = new Date(Date.now() - DAYS * 86400000).toISOString()
+    const trend = (slug: string) =>
+      fetch(`/api/${slug}?limit=1000&depth=0&where[createdAt][greater_than]=${encodeURIComponent(since)}`)
+        .then((r) => (r.ok ? (r.json() as Promise<any>) : null))
+        .then((j) => {
+          if (Array.isArray(j?.docs)) setTrends((prev) => ({ ...prev, [slug]: bucketByDay(j.docs) }))
+        })
+        .catch(() => undefined)
+    ;['users', 'resources', 'events', 'news', 'team-members'].forEach(trend)
 
     fetch('/api/membership-requests?where[status][equals]=pending&sort=-createdAt&limit=5&depth=0')
       .then((r) => (r.ok ? (r.json() as Promise<any>) : null))
@@ -175,11 +222,11 @@ export const BeforeDashboard: React.FC = () => {
 
       {/* At a glance */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '0.9rem' }}>
-        {stat('Members', memberCount, `${adminBase}/users`)}
-        {stat('Resources', resourceCount, `${adminBase}/resources`)}
-        {stat('Upcoming events', eventCount, `${adminBase}/events`)}
-        {stat('News posts', newsCount, `${adminBase}/news`)}
-        {stat('Leadership profiles', teamCount, `${adminBase}/team-members`)}
+        {stat('Members', memberCount, `${adminBase}/users`, trends['users'])}
+        {stat('Resources', resourceCount, `${adminBase}/resources`, trends['resources'])}
+        {stat('Upcoming events', eventCount, `${adminBase}/events`, trends['events'])}
+        {stat('News posts', newsCount, `${adminBase}/news`, trends['news'])}
+        {stat('Leadership profiles', teamCount, `${adminBase}/team-members`, trends['team-members'])}
       </div>
 
       {/* Two columns: members and resources */}
