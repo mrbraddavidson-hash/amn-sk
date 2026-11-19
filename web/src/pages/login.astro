@@ -19,14 +19,25 @@ import Layout from '../layouts/Layout.astro';
             <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
               Email Address
             </label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              required 
-              placeholder="name@organization.ca"
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm"
-            />
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="••••••••"
+                class="w-full px-4 py-2.5 pr-20 rounded-lg border border-slate-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                aria-controls="password"
+                aria-pressed="false"
+                class="absolute inset-y-0 right-0 px-4 text-xs font-bold text-sky-700 hover:text-sky-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-r-lg"
+              >
+                Show
+              </button>
+            </div>
           </div>
 
           <div>
@@ -122,4 +133,16 @@ import Layout from '../layouts/Layout.astro';
       });
     }
   </script>
+    <script>
+      const pw = document.getElementById('password') as HTMLInputElement | null;
+      const toggle = document.getElementById('toggle-password') as HTMLButtonElement | null;
+      toggle?.addEventListener('click', () => {
+        if (!pw || !toggle) return;
+        const showing = pw.type === 'text';
+        pw.type = showing ? 'password' : 'text';
+        toggle.textContent = showing ? 'Show' : 'Hide';
+        toggle.setAttribute('aria-pressed', String(!showing));
+        toggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+      });
+    </script>
 </Layout>
