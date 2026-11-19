@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { ResourceFiles } from './collections/ResourceFiles'
+import { ProfileImages } from './collections/ProfileImages'
 import { Resources } from './collections/Resources'
 import { MembershipRequests } from './collections/MembershipRequests'
 import { News } from './collections/News'
@@ -107,6 +108,7 @@ export default buildConfig({
     FAQs,
     Media,
     ResourceFiles,
+    ProfileImages,
   ],
   editor: lexicalEditor(),
   // Transactional email through Cloudflare Email Sending (Worker binding "EMAIL"). The sender address
@@ -141,7 +143,7 @@ export default buildConfig({
     s3Storage({
       enabled: s3Enabled,
       bucket: process.env.S3_RESOURCE_BUCKET || 'resource-files',
-      collections: { 'resource-files': true },
+      collections: { 'resource-files': true, 'profile-images': true },
       config: s3Config,
     }),
   ],
