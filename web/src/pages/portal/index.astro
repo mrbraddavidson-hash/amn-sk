@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro';
   <section class="bg-gradient-to-b from-sky-900 to-slate-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold font-mono mb-2">
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold mb-2">
           🔒 SECURE MEMBER AREA
         </div>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white" id="welcome-title">
@@ -66,7 +66,7 @@ import Layout from '../../layouts/Layout.astro';
               <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Restricted Materials</span>
               <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentor Resources</h2>
             </div>
-            <span class="text-xs font-mono bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">MENTORS ONLY</span>
+            <span class="text-xs bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">MENTORS ONLY</span>
           </div>
           <div id="mentor-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
@@ -78,7 +78,7 @@ import Layout from '../../layouts/Layout.astro';
               <span class="text-xs font-bold uppercase tracking-wider text-teal-700">Restricted Materials</span>
               <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Mentee Resources</h2>
             </div>
-            <span class="text-xs font-mono bg-teal-100 text-teal-800 px-2.5 py-1 rounded-md font-semibold">MENTEES ONLY</span>
+            <span class="text-xs bg-teal-100 text-teal-800 px-2.5 py-1 rounded-md font-semibold">MENTEES ONLY</span>
           </div>
           <div id="mentee-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
@@ -237,7 +237,7 @@ import Layout from '../../layouts/Layout.astro';
       footer.className = 'mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs gap-3';
 
       const meta = document.createElement('span');
-      meta.className = 'text-slate-400 font-mono';
+      meta.className = 'text-slate-400';
       const ext = (file?.filename || '').split('.').pop()?.toUpperCase();
       const parts = [ext, formatSize(file?.filesize)].filter(Boolean);
       if (r.publishedDate) {

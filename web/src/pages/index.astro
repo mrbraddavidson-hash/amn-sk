@@ -83,7 +83,7 @@ const events = await getEvents();
             <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg mb-4">
               🩺
             </div>
-            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono">Public Access</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Public Access</span>
             <h3 class="text-xl font-bold text-slate-900 mt-2">Health Providers</h3>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
               Clinical checklists, rural practice orientation guides, interprofessional protocols, and CME event information.
@@ -100,7 +100,7 @@ const events = await getEvents();
             <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-lg mb-4">
               🤝
             </div>
-            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono">Public Access</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Public Access</span>
             <h3 class="text-xl font-bold text-slate-900 mt-2">Patient Resources</h3>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
               Clear, patient-centered guides on navigating healthcare teams, virtual care pathways, and chronic illness coordination.
@@ -120,7 +120,7 @@ const events = await getEvents();
             <div class="w-12 h-12 rounded-xl bg-sky-700 text-white flex items-center justify-center font-bold text-lg mb-4">
               🧭
             </div>
-            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-mono">Login Required</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Login Required</span>
             <h3 class="text-xl font-bold text-slate-900 mt-2">Mentor Portal</h3>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
               Confidential coaching toolkits, meeting frameworks, leadership resources, and private discussion documentation.
@@ -140,7 +140,7 @@ const events = await getEvents();
             <div class="w-12 h-12 rounded-xl bg-teal-700 text-white flex items-center justify-center font-bold text-lg mb-4">
               🌱
             </div>
-            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-mono">Login Required</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Login Required</span>
             <h3 class="text-xl font-bold text-slate-900 mt-2">Mentee Portal</h3>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
               Career milestone roadmaps, transition toolkits, onboarding templates, and direct access to assigned mentor contact info.
@@ -217,7 +217,7 @@ const events = await getEvents();
           {events.slice(0, 2).map((item) => (
             <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-sky-300 transition-colors">
               <div class="flex items-center gap-2 mb-2">
-                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-100 text-sky-800 uppercase font-mono">
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-100 text-sky-800 uppercase">
                   {item.locationType}
                 </span>
                 <span class="text-xs text-slate-500 font-medium">{new Date(item.eventDate).toLocaleDateString()}</span>
