@@ -265,11 +265,28 @@ export const BeforeDashboard: React.FC = () => {
             { label: 'FAQs', href: `${adminBase}/faqs`, add: null },
             { label: 'Images and media', href: `${adminBase}/media`, add: `${adminBase}/media/create` },
           ].map((item) => (
-            <div key={item.label} style={{ border: '1px solid var(--theme-elevation-150)', borderRadius: '10px', padding: '0.85rem 1rem' }}>
-              <div style={{ fontWeight: 600, color: 'var(--theme-text)', marginBottom: '0.5rem' }}>{item.label}</div>
-              <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem' }}>
-                <a href={item.href} style={{ color: LINK, fontWeight: 600 }}>Manage</a>
-                {item.add && <a href={item.add} style={{ color: LINK, fontWeight: 600 }}>Add new</a>}
+            <div
+              key={item.label}
+              style={{
+                border: '1px solid var(--theme-elevation-150)',
+                borderLeft: `4px solid ${PRIMARY}`,
+                borderRadius: '10px',
+                padding: '0.9rem 1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+              }}
+            >
+              <div style={{ fontWeight: 700, color: 'var(--theme-text)', fontSize: '0.98rem' }}>{item.label}</div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <a href={item.href} style={{ ...(item.add ? secondaryButton : primaryButton), padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>
+                  Manage
+                </a>
+                {item.add && (
+                  <a href={item.add} style={{ ...primaryButton, padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>
+                    + Add new
+                  </a>
+                )}
               </div>
             </div>
           ))}
