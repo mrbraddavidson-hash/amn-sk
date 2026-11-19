@@ -63,3 +63,8 @@ export function richTextToHtml(content: unknown): string {
   if (!Array.isArray(children)) return ''
   return children.map(block).join('')
 }
+
+// Plain text (for example an event location) with any web address made clickable. Text is escaped first.
+export function linkifyText(text: string): string {
+  return esc(text).replace(/(https?:\/\/[^\s<]+)/g, (url) => `<a href="${url}" class="text-sky-700 underline break-all">${url}</a>`)
+}

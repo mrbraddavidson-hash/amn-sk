@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getEvents, mediaInfo } from '../../lib/cms';
+import { linkifyText } from '../../lib/richtext';
 
 const events = await getEvents();
 ---
@@ -36,7 +37,7 @@ const events = await getEvents();
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">{event.title}</h2>
             <p class="text-sm text-slate-600 leading-relaxed">{event.description}</p>
             {event.locationDetails && (
-              <p class="text-xs text-slate-500 font-medium">📍 {event.locationDetails}</p>
+              <p class="text-xs text-slate-500 font-medium" set:html={`📍 ${linkifyText(event.locationDetails)}`} />
             )}
           </div>
           {event.registrationUrl && (
