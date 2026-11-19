@@ -5,11 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Member Area — Mentor Network (AMN-SK)">
   <section class="bg-gradient-to-b from-sky-900 to-slate-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <div class="flex items-center gap-5">
-        <div id="profile-avatar" class="hidden shrink-0">
-          <img id="profile-photo" alt="Your profile photo" class="w-20 h-20 rounded-full object-cover border-2 border-amber-300 bg-white" />
-        </div>
-        <div>
+      <div>
         <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold font-mono mb-2">
           🔒 SECURE MEMBER AREA
         </div>
@@ -19,7 +15,6 @@ import Layout from '../../layouts/Layout.astro';
         <p class="text-sm text-sky-200 mt-1" id="user-info-bar">
           Verifying your authenticated session...
         </p>
-        </div>
       </div>
 
       <div>
@@ -274,24 +269,6 @@ import Layout from '../../layouts/Layout.astro';
       return items.length > 0;
     }
 
-    // Profile photos are private, so the browser fetches them with the login token (an <img> tag
-    // cannot send that header) and shows them from a temporary local link.
-    async function loadProfilePhoto(photo: any, token: string) {
-      if (!photo || typeof photo !== 'object' || !photo.filename) return;
-      try {
-        const res = await fetch(`${CMS}/api/profile-images/file/${encodeURIComponent(photo.filename)}`, {
-          headers: { Authorization: `JWT ${token}` },
-        });
-        if (!res.ok) return;
-        const img = $('profile-photo') as HTMLImageElement | null;
-        if (!img) return;
-        img.src = URL.createObjectURL(await res.blob());
-        show('profile-avatar');
-      } catch {
-        /* no photo is shown; the rest of the page still works */
-      }
-    }
-
     async function init() {
       const token = localStorage.getItem(TOKEN_KEY);
       if (!token) {
@@ -302,7 +279,7 @@ import Layout from '../../layouts/Layout.astro';
       // 1. Ask the CMS who this is (the saved user details are never trusted).
       let me: any = null;
       try {
-        const res = await fetch(`${CMS}/api/users/me?depth=1`, { headers: { Authorization: `JWT ${token}` } });
+        const res = await fetch(`${CMS}/api/users/me`, { headers: { Authorization: `JWT ${token}` } });
         me = res.ok ? (await res.json()).user : null;
       } catch {
         show('member-content');
@@ -319,7 +296,6 @@ import Layout from '../../layouts/Layout.astro';
       show('logout-btn');
       setText('welcome-title', `Welcome back, ${me.fullName || me.email}`);
       setText('user-info-bar', `Signed in as ${me.email} (${String(me.role || 'member').toUpperCase()})`);
-      loadProfilePhoto(me.profileImage, token);
       if (me.status === 'suspended') {
         showError('Your membership is currently suspended, so only public resources are shown. Please contact the Network.');
       }
