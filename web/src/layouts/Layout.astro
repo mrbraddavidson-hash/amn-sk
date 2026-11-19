@@ -38,8 +38,6 @@ const currentPath = Astro.url.pathname;
           Mentor Network (AMN-SK) • Saskatchewan Clinical Mentorship Portal
         </p>
         <div class="flex items-center gap-4">
-          <a href="/login" class="hover:text-white transition-colors underline-offset-4 hover:underline">Member Login</a>
-          <span class="text-slate-600">|</span>
           <a href="https://amn-sk-cms.mrbraddavidson.workers.dev/admin" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 font-medium">Admin Portal ↗</a>
         </div>
       </div>
@@ -195,11 +193,11 @@ const currentPath = Astro.url.pathname;
             <ul class="space-y-2.5 text-sm">
               <li><a href="/resources#providers" class="hover:text-white transition-colors">Health Provider Resources</a></li>
               <li><a href="/resources#patients" class="hover:text-white transition-colors">Patient Resources</a></li>
-              <li><a href="/login" class="hover:text-white transition-colors flex items-center gap-1.5">
+              <li class="flex items-center gap-1.5">
                 <span>Mentor Resources</span>
                 <span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded text-sky-300">Restricted</span>
               </a></li>
-              <li><a href="/login" class="hover:text-white transition-colors flex items-center gap-1.5">
+              <li class="flex items-center gap-1.5">
                 <span>Mentee Resources</span>
                 <span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded text-sky-300">Restricted</span>
               </a></li>
@@ -213,9 +211,6 @@ const currentPath = Astro.url.pathname;
               Approved mentors and mentees can sign in to access confidential frameworks, meeting logs, and documents.
             </p>
             <div class="flex flex-col gap-2">
-              <a href="/login" class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-sm font-medium transition-colors">
-                Member Area Login
-              </a>
               <a href="https://amn-sk-cms.mrbraddavidson.workers.dev/admin" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition-colors">
                 Staff Content Management ↗
               </a>
