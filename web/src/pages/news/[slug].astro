@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getNews, mediaInfo } from '../../lib/cms';
+import { richTextToHtml } from '../../lib/richtext';
+
+export async function getStaticPaths() {
+  const news = await getNews();
+  return news.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const image = mediaInfo(item.featuredImage);
+const body = richTextToHtml(item.content);
+const dateText = new Date(item.publishedDate).toLocaleDateString('en-CA', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={`${item.title} — Mentor Network (AMN-SK)`} description={item.excerpt}>
+  <article class="py-16 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/news/" class="text-sm font-semibold text-sky-700 hover:underline">← Back to News & Updates</a>
+      <p class="text-xs text-slate-500 font-medium mt-6">
+        {dateText}{item.isFeatured && ' · Featured'}
+      </p>
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 mt-2">{item.title}</h1>
+      {image && <img src={image.url} alt={image.alt} class="w-full rounded-2xl mt-8" />}
+      <p class="text-lg text-slate-600 mt-6 leading-relaxed">{item.excerpt}</p>
+      {body && <div class="mt-8 text-base text-slate-800 leading-relaxed" set:html={body} />}
+    </div>
+  </article>
+</Layout>

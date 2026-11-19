@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getTeamMembers } from '../../lib/cms';
+import { getTeamMembers, mediaInfo } from '../../lib/cms';
 
 const team = await getTeamMembers();
 ---
@@ -24,9 +24,13 @@ const team = await getTeamMembers();
         {team.map((member) => (
           <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between">
             <div>
-              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-600 to-teal-500 text-white flex items-center justify-center font-bold text-2xl shadow-sm mb-6">
-                {member.name.charAt(0)}
-              </div>
+              {mediaInfo(member.photo) ? (
+                <img src={mediaInfo(member.photo)!.url} alt={mediaInfo(member.photo)!.alt || member.name} class="w-16 h-16 rounded-2xl object-cover shadow-sm mb-6" />
+              ) : (
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-600 to-teal-500 text-white flex items-center justify-center font-bold text-2xl shadow-sm mb-6">
+                  {member.name.charAt(0)}
+                </div>
+              )}
               <h2 class="text-xl font-bold text-slate-900 tracking-tight">{member.name}</h2>
               <p class="text-sm font-semibold text-sky-700 mt-1 mb-4">{member.roleTitle}</p>
               <p class="text-sm text-slate-600 leading-relaxed">{member.bio}</p>

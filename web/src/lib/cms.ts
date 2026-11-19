@@ -13,6 +13,19 @@ export interface ResourceItem {
   }
 }
 
+export interface MediaItem {
+  id: number
+  url?: string
+  alt?: string
+}
+
+// Returns the image URL and alt text for a populated upload field, or null if it is not set.
+export function mediaInfo(m: MediaItem | number | null | undefined): { url: string; alt: string } | null {
+  if (!m || typeof m !== 'object' || !m.url) return null
+  const url = m.url.startsWith('/') ? `${CMS_URL}${m.url}` : m.url
+  return { url, alt: m.alt || '' }
+}
+
 export interface NewsItem {
   id: string | number
   title: string
@@ -21,6 +34,7 @@ export interface NewsItem {
   excerpt: string
   content?: any
   isFeatured?: boolean
+  featuredImage?: MediaItem | number | null
 }
 
 export interface EventItem {
@@ -30,6 +44,7 @@ export interface EventItem {
   eventDate: string
   endDate?: string
   locationType: 'virtual' | 'in-person' | 'hybrid'
+  endDate?: string
   locationDetails?: string
   description: string
   registrationUrl?: string
@@ -40,6 +55,7 @@ export interface TeamMemberItem {
   name: string
   roleTitle: string
   bio: string
+  photo?: MediaItem | number | null
   displayOrder?: number
 }
 
