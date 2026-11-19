@@ -36,6 +36,7 @@ const patientResources = await getPublicResources('patient');
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {providerResources.length === 0 && <p class="text-sm text-slate-500 md:col-span-2">No resources have been published here yet.</p>}
           {providerResources.map((res) => (
             <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between">
               <div>
@@ -44,10 +45,12 @@ const patientResources = await getPublicResources('patient');
                 <p class="text-sm text-slate-600 mt-2 leading-relaxed">{res.description}</p>
               </div>
               <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-xs text-slate-500">Format: Clinical Guide (PDF)</span>
-                <a href="#providers" class="text-xs font-bold text-sky-700 hover:text-sky-800 flex items-center gap-1">
-                  <span>Download Resource</span> ↓
-                </a>
+                <span class="text-xs text-slate-500">{res.file?.filename?.split('.').pop()?.toUpperCase() ?? 'No file attached'}</span>
+                {res.file?.url && (
+                  <a href={res.file.url} download={res.file.filename} class="text-xs font-bold text-sky-700 hover:text-sky-800 flex items-center gap-1">
+                    <span>Download</span> ↓
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -68,6 +71,7 @@ const patientResources = await getPublicResources('patient');
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {patientResources.length === 0 && <p class="text-sm text-slate-500 md:col-span-2">No resources have been published here yet.</p>}
           {patientResources.map((res) => (
             <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between">
               <div>
@@ -76,10 +80,12 @@ const patientResources = await getPublicResources('patient');
                 <p class="text-sm text-slate-600 mt-2 leading-relaxed">{res.description}</p>
               </div>
               <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-xs text-slate-500">Format: Patient Guide</span>
-                <a href="#patients" class="text-xs font-bold text-teal-700 hover:text-teal-800 flex items-center gap-1">
-                  <span>Download Guide</span> ↓
-                </a>
+                <span class="text-xs text-slate-500">{res.file?.filename?.split('.').pop()?.toUpperCase() ?? 'No file attached'}</span>
+                {res.file?.url && (
+                  <a href={res.file.url} download={res.file.filename} class="text-xs font-bold text-teal-700 hover:text-teal-800 flex items-center gap-1">
+                    <span>Download</span> ↓
+                  </a>
+                )}
               </div>
             </div>
           ))}

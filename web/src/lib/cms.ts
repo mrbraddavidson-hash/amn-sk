@@ -187,41 +187,6 @@ const FALLBACK_EVENTS: EventItem[] = [
   },
 ]
 
-const FALLBACK_RESOURCES: ResourceItem[] = [
-  {
-    id: 1,
-    title: "Rural Practice Transition Checklist",
-    description: "Comprehensive step-by-step guidance for healthcare providers entering rural or remote clinic environments.",
-    category: "health-provider",
-    accessLevel: "public",
-    publishedDate: "2026-08-10",
-  },
-  {
-    id: 2,
-    title: "Interprofessional Collaborative Care Framework",
-    description: "Clinical guidelines on structuring coordinated care plans between physicians, nurse practitioners, and allied health staff.",
-    category: "health-provider",
-    accessLevel: "public",
-    publishedDate: "2026-07-22",
-  },
-  {
-    id: 3,
-    title: "Patient & Family Care Roadmap",
-    description: "A patient-facing guide explaining primary care access pathways, specialist referrals, and virtual consultation options.",
-    category: "patient",
-    accessLevel: "public",
-    publishedDate: "2026-09-05",
-  },
-  {
-    id: 4,
-    title: "Understanding Your Healthcare Team: Frequently Asked Questions",
-    description: "A plain-language overview helping patients and caregivers understand provider roles and continuity of care.",
-    category: "patient",
-    accessLevel: "public",
-    publishedDate: "2026-06-15",
-  },
-]
-
 async function safeFetch<T>(endpoint: string, fallback: T): Promise<T> {
   try {
     const res = await fetch(`${CMS_URL}/api/${endpoint}`, {
@@ -264,9 +229,7 @@ export async function getPublicResources(category?: 'health-provider' | 'patient
   if (category) {
     endpoint += `&where[category][equals]=${category}`
   }
-  const items = await safeFetch<ResourceItem[]>(endpoint, FALLBACK_RESOURCES)
-  if (category) {
-    return items.filter(r => r.category === category)
-  }
-  return items.filter(r => r.accessLevel === 'public')
+  // No sample fallback here: if nothing is published, the page says so instead of showing fake files.
+  const items = await safeFetch<ResourceItem[]>(endpoint, [])
+  return items.filter(r => r.accessLevel === 'public' && (!category || r.category === category))
 }
