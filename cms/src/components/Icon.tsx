@@ -17,8 +17,8 @@ export const Icon: React.FC = () => (
   >
     <defs>
       <linearGradient id="amn-sk-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#0284c7" />
-        <stop offset="100%" stopColor="#0d9488" />
+        <stop offset="0%" stopColor="#1f5c45" />
+        <stop offset="100%" stopColor="#11392b" />
       </linearGradient>
     </defs>
     <rect width="24" height="24" rx="5" fill="url(#amn-sk-icon-grad)" />

@@ -12,8 +12,8 @@ export const ExportUsersButton: React.FC = () => {
         padding: '0.85rem 1.25rem',
         marginBottom: '1rem',
         borderRadius: '10px',
-        background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(13, 148, 136, 0.08) 100%)',
-        border: '1px solid rgba(2, 132, 199, 0.25)',
+        background: 'linear-gradient(135deg, rgba(31, 92, 69, 0.08) 0%, rgba(192, 138, 31, 0.08) 100%)',
+        border: '1px solid rgba(31, 92, 69, 0.25)',
       }}
     >
       <div>
@@ -37,10 +37,10 @@ export const ExportUsersButton: React.FC = () => {
           fontSize: '0.82rem',
           fontWeight: 700,
           borderRadius: '8px',
-          background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+          background: 'linear-gradient(135deg, #1f5c45 0%, #11392b 100%)',
           color: '#ffffff',
           textDecoration: 'none',
-          boxShadow: '0 2px 6px rgba(2, 132, 199, 0.3)',
+          boxShadow: '0 2px 6px rgba(31, 92, 69, 0.3)',
           cursor: 'pointer',
         }}
       >

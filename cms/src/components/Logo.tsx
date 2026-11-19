@@ -7,8 +7,8 @@ export const Logo: React.FC = () => (
         width: 42,
         height: 42,
         borderRadius: 10,
-        background: 'linear-gradient(135deg, #0284c7 0%, #0d9488 100%)',
-        boxShadow: '0 4px 12px rgba(2, 132, 199, 0.3)',
+        background: 'linear-gradient(135deg, #1f5c45 0%, #11392b 100%)',
+        boxShadow: '0 4px 12px rgba(31, 92, 69, 0.3)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -48,7 +48,7 @@ export const Logo: React.FC = () => (
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
-          color: '#0284c7',
+          color: '#a06f12',
         }}
       >
         AMN-SK · Saskatchewan

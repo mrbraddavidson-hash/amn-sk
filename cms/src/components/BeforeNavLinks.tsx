@@ -12,12 +12,12 @@ export const BeforeNavLinks: React.FC = () => {
           gap: '0.6rem',
           padding: '0.85rem 1.15rem',
           borderRadius: '10px',
-          background: 'linear-gradient(135deg, #0284c7 0%, #0d9488 100%)',
+          background: 'linear-gradient(135deg, #1f5c45 0%, #11392b 100%)',
           color: '#ffffff',
           fontWeight: 800,
           fontSize: '0.98rem',
           textDecoration: 'none',
-          boxShadow: '0 3px 10px rgba(2, 132, 199, 0.35)',
+          boxShadow: '0 3px 10px rgba(31, 92, 69, 0.35)',
           transition: 'all 0.15s ease-in-out',
         }}
       >
