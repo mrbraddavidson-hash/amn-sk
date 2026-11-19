@@ -14,9 +14,11 @@ type Application = {
   createdAt: string
 }
 
-const PRIMARY = '#1f5c45'
+const PRIMARY = '#1f5c45' // prairie green
+const DEEP = '#11392b' // deep prairie green
 const SECONDARY = '#1f5767'
 const GOLD = '#7c560e'
+const WHEAT = '#e9bd55' // wheat gold accent
 const LINK = '#f2d48a' // light wheat gold: readable on the dark admin background
 
 const card: React.CSSProperties = {
@@ -28,7 +30,7 @@ const card: React.CSSProperties = {
 
 const sectionTitle: React.CSSProperties = {
   margin: '0 0 0.25rem 0',
-  fontSize: '1.05rem',
+  fontSize: '1.2rem',
   fontWeight: 700,
   color: 'var(--theme-text)',
 }
@@ -62,7 +64,7 @@ const secondaryButton: React.CSSProperties = {
 const stat = (label: string, value: Count, href: string) => (
   <a
     href={href}
-    style={{ ...card, textDecoration: 'none', color: 'inherit', display: 'block', padding: '1rem 1.2rem' }}
+    style={{ ...card, borderTop: `4px solid ${PRIMARY}`, textDecoration: 'none', color: 'inherit', display: 'block', padding: '1rem 1.2rem' }}
   >
     <div style={{ fontSize: '0.85rem', color: 'var(--theme-elevation-600)', fontWeight: 600 }}>{label}</div>
     <div style={{ fontSize: '1.9rem', fontWeight: 700, color: 'var(--theme-text)', lineHeight: 1.2, marginTop: '0.2rem' }}>
@@ -104,20 +106,35 @@ export const BeforeDashboard: React.FC = () => {
 
   return (
     <div style={{ maxWidth: '1100px', margin: '0 auto 3rem auto', padding: '0 0.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {/* Header */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '1rem' }}>
+      {/* Header banner */}
+      <div
+        style={{
+          background: `linear-gradient(135deg, ${DEEP} 0%, ${PRIMARY} 100%)`,
+          borderBottom: `4px solid ${WHEAT}`,
+          borderRadius: '14px',
+          padding: '1.6rem 1.8rem',
+          color: '#ffffff',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          gap: '1rem',
+        }}
+      >
         <div>
-          <p style={{ ...muted, fontWeight: 600, color: GOLD, margin: 0 }}>Mentor Network (AMN-SK) · Staff</p>
-          <h1 style={{ margin: '0.2rem 0 0.25rem 0', fontSize: '1.8rem', fontWeight: 700, color: 'var(--theme-text)' }}>
+          <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: WHEAT }}>
+            Mentor Network (AMN-SK) · Staff
+          </p>
+          <h1 style={{ margin: '0.25rem 0 0.35rem 0', fontSize: '2.1rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.15 }}>
             Dashboard
           </h1>
-          <p style={muted}>Data stored in Canada (Supabase, Canada Central).</p>
+          <p style={{ margin: 0, fontSize: '0.92rem', color: '#e6efe9' }}>Data stored in Canada (Supabase, Canada Central).</p>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <a href="https://amn-sk.pages.dev" target="_blank" rel="noopener noreferrer" style={secondaryButton}>
+          <a href="https://amn-sk.pages.dev" target="_blank" rel="noopener noreferrer" style={{ ...buttonBase, background: 'rgba(255,255,255,0.12)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.35)' }}>
             View public site ↗
           </a>
-          <a href="/api/logout" style={secondaryButton}>Sign out</a>
+          <a href="/api/logout" style={{ ...buttonBase, background: 'rgba(255,255,255,0.12)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.35)' }}>Sign out</a>
         </div>
       </div>
 
