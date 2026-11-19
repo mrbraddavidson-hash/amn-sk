@@ -39,14 +39,16 @@ const events = await getEvents();
               <p class="text-xs text-slate-500 font-medium">📍 {event.locationDetails}</p>
             )}
           </div>
-          <div>
-            <a 
-              href={event.registrationUrl || '/apply'} 
-              class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm bg-sky-700 hover:bg-sky-800 text-white shadow-xs transition-all whitespace-nowrap"
-            >
-              Register / Details →
-            </a>
-          </div>
+          {event.registrationUrl && (
+            <div>
+              <a
+                href={event.registrationUrl}
+                class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm bg-sky-700 hover:bg-sky-800 text-white shadow-xs transition-all whitespace-nowrap"
+              >
+                Register →
+              </a>
+            </div>
+          )}
         </div>
       ))}
     </div>
