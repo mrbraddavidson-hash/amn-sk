@@ -50,6 +50,14 @@ export const Resources: CollectionConfig = {
   },
   fields: [
     {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional picture shown on the public site. JPG, PNG or WebP.',
+      },
+    },
+    {
       name: 'title',
       type: 'text',
       required: true,

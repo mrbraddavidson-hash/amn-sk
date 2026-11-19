@@ -16,6 +16,14 @@ export const FAQs: CollectionConfig = {
   },
   fields: [
     {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional picture shown on the public site. JPG, PNG or WebP.',
+      },
+    },
+    {
       name: 'question',
       type: 'text',
       required: true,

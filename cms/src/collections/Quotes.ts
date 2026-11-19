@@ -16,6 +16,14 @@ export const Quotes: CollectionConfig = {
   },
   fields: [
     {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional picture shown on the public site. JPG, PNG or WebP.',
+      },
+    },
+    {
       name: 'quote',
       type: 'textarea',
       required: true,

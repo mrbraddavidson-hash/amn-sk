@@ -172,6 +172,10 @@ export interface User {
  */
 export interface Resource {
   id: number;
+  /**
+   * Optional picture shown on the public site. JPG, PNG or WebP.
+   */
+  image?: (number | null) | Media;
   title: string;
   description: string;
   category: 'health-provider' | 'patient' | 'mentor' | 'mentee';
@@ -183,6 +187,25 @@ export interface Resource {
   publishedDate?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * Downloadable files for Resources. Who can download a file is decided by the Access Level of the resource it is attached to (public, mentor only, or mentee only).
@@ -269,29 +292,14 @@ export interface News {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
   id: number;
+  /**
+   * Optional picture shown on the public site. JPG, PNG or WebP.
+   */
+  image?: (number | null) | Media;
   title: string;
   slug: string;
   eventDate: string;
@@ -335,6 +343,10 @@ export interface TeamMember {
  */
 export interface Quote {
   id: number;
+  /**
+   * Optional picture shown on the public site. JPG, PNG or WebP.
+   */
+  image?: (number | null) | Media;
   quote: string;
   author: string;
   /**
@@ -351,6 +363,10 @@ export interface Quote {
  */
 export interface Faq {
   id: number;
+  /**
+   * Optional picture shown on the public site. JPG, PNG or WebP.
+   */
+  image?: (number | null) | Media;
   question: string;
   answer: string;
   category?: ('general' | 'mentors' | 'mentees' | 'membership') | null;
@@ -496,6 +512,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "resources_select".
  */
 export interface ResourcesSelect<T extends boolean = true> {
+  image?: T;
   title?: T;
   description?: T;
   category?: T;
@@ -542,6 +559,7 @@ export interface NewsSelect<T extends boolean = true> {
  * via the `definition` "events_select".
  */
 export interface EventsSelect<T extends boolean = true> {
+  image?: T;
   title?: T;
   slug?: T;
   eventDate?: T;
@@ -571,6 +589,7 @@ export interface TeamMembersSelect<T extends boolean = true> {
  * via the `definition` "quotes_select".
  */
 export interface QuotesSelect<T extends boolean = true> {
+  image?: T;
   quote?: T;
   author?: T;
   roleOrAffiliation?: T;
@@ -583,6 +602,7 @@ export interface QuotesSelect<T extends boolean = true> {
  * via the `definition` "faqs_select".
  */
 export interface FaqsSelect<T extends boolean = true> {
+  image?: T;
   question?: T;
   answer?: T;
   category?: T;
