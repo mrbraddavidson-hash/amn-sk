@@ -77,7 +77,6 @@ export interface Config {
     faqs: Faq;
     media: Media;
     'resource-files': ResourceFile;
-    'profile-images': ProfileImage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -95,7 +94,6 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'resource-files': ResourceFilesSelect<false> | ResourceFilesSelect<true>;
-    'profile-images': ProfileImagesSelect<false> | ProfileImagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -148,10 +146,6 @@ export interface User {
    * Hospital, clinic, or practice affiliation
    */
   organization?: string | null;
-  /**
-   * Optional profile photo. JPG, PNG or WebP. Only signed-in members can see it.
-   */
-  profileImage?: (number | null) | ProfileImage;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -171,30 +165,6 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
-}
-/**
- * Profile photos for member accounts. Visible only to signed-in members.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "profile-images".
- */
-export interface ProfileImage {
-  id: number;
-  /**
-   * Short description, for example "Photo of Jane Smith"
-   */
-  alt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -451,10 +421,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'resource-files';
         value: number | ResourceFile;
-      } | null)
-    | ({
-        relationTo: 'profile-images';
-        value: number | ProfileImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -507,7 +473,6 @@ export interface UsersSelect<T extends boolean = true> {
   role?: T;
   status?: T;
   organization?: T;
-  profileImage?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -648,24 +613,6 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "resource-files_select".
  */
 export interface ResourceFilesSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "profile-images_select".
- */
-export interface ProfileImagesSelect<T extends boolean = true> {
-  alt?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

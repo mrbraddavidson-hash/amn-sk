@@ -85,14 +85,6 @@ export const Users: CollectionConfig = {
         description: 'Hospital, clinic, or practice affiliation',
       },
     },
-    {
-      name: 'profileImage',
-      type: 'upload',
-      relationTo: 'profile-images',
-      admin: {
-        description: 'Optional profile photo. JPG, PNG or WebP. Only signed-in members can see it.',
-      },
-    },
   ],
   versions: false,
 }
